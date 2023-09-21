@@ -6,6 +6,7 @@ import axios from "axios"
 import { BrowserRouter,Route,Routes } from "react-router-dom"
 import ProfilePage from './pages/ProfilePage'
 import Swal from "sweetalert2"
+import CreateProfile from './pages/CreateProfile'
 export function App() {
   const [ user,setuser ] = useState({
     user: null
@@ -59,6 +60,7 @@ export function App() {
           <Routes>
             <Route path='/' element={<LP />}/>
             <Route path='/profile' element={<ProfilePage />}/>
+            <Route path='/profile/createProfile' element={<CreateProfile />}/>
           </Routes>
       </BrowserRouter>
       </MyContext.Provider>

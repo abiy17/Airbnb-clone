@@ -2,6 +2,7 @@ import { useContext } from "preact/hooks";
 import MyContext from "../context";
 import Correct from "../assets/correct.svg"
 import ProfileFooter from "./ProfileFooter";
+import { NavLink } from "react-router-dom";
 function ProfileMain() {
     const { user,setuser } = useContext(MyContext)
     return ( 
@@ -49,12 +50,12 @@ function ProfileMain() {
                     </div>
                 </div>
             </div>
-            <div className="w-6/12 h-[109vh] relative top-[18em]">
+            <div className="w-6/12 h-[10vh] relative top-[18em]">
                 <div className="ml-3">
                     <p className="text-stone-300">-------------------------------------------------------------------</p>
                     <p className="font-sans font-bold mt-6 ml-3 w-5/12 text-[1.3em]">It's time to create your profile</p>
                     <p className="w-72 text-stone-500 ml-3 mt-5">Your Airbnb profile is an important part of every reservation. Create yours to help other Hosts and guests get to know you.</p>
-                    <button className="w-3/12 rounded-xl ml-3 mt-6 h-12 bg-pink-600 text-white font-semibold">Create Profile</button>
+                    <NavLink to="createProfile"><button className="w-3/12 rounded-xl ml-3 mt-6 h-12 bg-pink-600 text-white font-semibold">Create Profile</button></NavLink>
                 </div>
             </div>
         </div>
