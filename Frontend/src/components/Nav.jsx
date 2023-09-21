@@ -7,12 +7,23 @@ import "aos/dist/aos.css"
 import Aos from "aos";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom"
+import axios from "axios";
 function Nav() {
-    const { signUpModal,Logout,setsignUpModal,modal,setmodal,loginModal,setloginModal,user,setuser,Profilemodal,setProfilemodal } = useContext(MyContext)
+    const { Loading,setLoading,listing,setlisting,country,setcountry,Logout,setsignUpModal,modal,setmodal,loginModal,setloginModal,user,setuser,Profilemodal,setProfilemodal } = useContext(MyContext)
     console.log(user)
     useEffect(()=>{
         Aos.init();
     },[Profilemodal])
+    const Searching =()=>{
+        setLoading(true)
+        axios.post(`http://localhost:5000/searching`,{ country }).then(res => {
+            console.log(res)
+            setlisting(res.data)
+            setLoading(false)
+        }).catch(err =>{
+            console.log(err)
+        })
+    }
     return (
         <div className="flex justify-around items-center w-full h-[5em] shadow-sm sticky top-0 z-50 bg-white">
             <div className="text-red-500 flex gap-1 items-center cursor-pointer">
@@ -20,9 +31,9 @@ function Nav() {
                 <p className="font-bold text-2xl">airbnb</p>
             </div>
             <div className="w-[50%] flex items-center">
-                <input placeholder="Search here..." type="text" className=" rounded-3xl pl-10 font-mono font-semibold w-[90%] h-12 border-[1px] shadow-md outline-1 outline-red-400"/>
+                <input onChange={(e)=>setcountry(e.target.value)} placeholder="Search By Country" type="text" className=" rounded-3xl pl-10 font-mono font-semibold w-[90%] h-12 border-[1px] shadow-md outline-1 outline-red-400"/>
                 <div className="w-10 hover:opacity-70 duration-300 relative left-[-3em] h-7 flex justify-center items-center rounded-full bg-red-500 text-white">
-                    <FaSearch className=" cursor-pointer"/>
+                    <FaSearch onClick={Searching} className=" cursor-pointer"/>
                 </div>
                <a href="https://www.airbnb.com/host/homes" className="w-[29%] duration-300 h-10 hover:bg-stone-50 cursor-pointer font-sans relative flex justify-center items-center rounded-3xl">
                         <p>Airbnb your home</p>

@@ -9,6 +9,8 @@ app.use(cors());
 
 app.get(`/listing`,mongo.getListing)
 
+app.post(`/searching`,mongo.Searching)
+
 app.post(`/signup`,mongo.createUser)
 
 app.post(`/login`,mongo.loggingIN)

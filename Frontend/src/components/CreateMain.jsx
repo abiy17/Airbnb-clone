@@ -62,6 +62,7 @@ function CreateMain() {
                         </div>
                     </div>
                 </div>
+                <button className="w-24 h-12 bg-black text-white rounded-lg font-semibold float-right mt-4">Done</button>
             </div>
         </div>
      );

@@ -43,6 +43,18 @@ const getListing = async ( req,res,next) =>{
     }
 }
 
+const Searching = async ( req,res,next ) =>{
+    const { country } = req.body
+    try{
+       let ResultSearching = await listingsModel.find({ "address.country": country }) 
+       res.json(ResultSearching)
+    }
+    catch(err){
+        res.json({ mssge: err })
+    }
+}
+
 exports.createUser = createUser;
 exports.loggingIN = loggingIN;
 exports.getListing = getListing;
+exports.Searching = Searching;

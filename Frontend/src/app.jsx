@@ -23,6 +23,7 @@ export function App() {
   const [ phoneNumber,setphoneNumber ] = useState("")
   const [ signUpModal,setsignUpModal ] = useState(false)
   const [ Profilemodal,setProfilemodal ] = useState(false)
+  const [ country,setcountry ] = useState("")
   useEffect(()=>{
     axios.get(`http://localhost:5000/listing`).then(res => {
       setlisting(res.data)
@@ -49,7 +50,8 @@ export function App() {
   return (
     <>
       <MyContext.Provider value={{ 
-        filterTax,setfilterTax ,Logout,Profilemodal,setProfilemodal,
+        filterTax,setfilterTax ,Logout,Profilemodal,country,setcountry
+        ,setProfilemodal,
         Loading,setLoading,modal,setmodal,
         loginModal,setloginModal,listing,setlisting,
         signUpModal,setsignUpModal,user,setuser
