@@ -31,7 +31,7 @@ function Nav() {
                 <p className="font-bold text-2xl">airbnb</p>
             </div>
             <div className="w-[50%] flex items-center">
-                <input onChange={(e)=>setcountry(e.target.value)} placeholder="Search By Country" type="text" className=" rounded-3xl pl-10 font-mono font-semibold w-[90%] h-12 border-[1px] shadow-md outline-1 outline-red-400"/>
+                <input onChange={(e)=>setcountry(e.target.value)} placeholder="Search By Country" type="text" className=" rounded-3xl pl-10 font-mono font-semibold w-[90%] h-12 border-[1px] shadow-md outline-1 outline-red-400" />
                 <div className="w-10 hover:opacity-70 duration-300 relative left-[-3em] h-7 flex justify-center items-center rounded-full bg-red-500 text-white">
                     <FaSearch onClick={Searching} className=" cursor-pointer"/>
                 </div>

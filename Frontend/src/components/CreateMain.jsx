@@ -28,37 +28,37 @@ function CreateMain() {
                     <div className="w-[50%] flex flex-col gap-4">
                         <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-16">
                             <FaSchool className="text-stone-500 relative left-5 text-center text-xl"/>
-                            <input type="text" placeholder="Where did you go to school ?" className="w-10/12 ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
+                            <input type="text" placeholder="Where did you go to school ?" className="w-10/12 font-sans ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
                         </div>
-                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-20">
+                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-16">
                             <FaQuestion className="text-stone-500 relative left-5 text-center text-xl"/>
-                            <input type="text" placeholder="Where you live ?" className="w-10/12 ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
+                            <input type="text" placeholder="Where you live ?" className="w-10/12 font-sans ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
                         </div>
-                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-20">
+                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-16">
                             <AiOutlineHeart className="text-stone-500 relative left-5 text-center text-2xl"/>
-                            <input type="text" placeholder="What are you obsessed with ?" className="w-10/12 ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
+                            <input type="text" placeholder="What are you obsessed with ?" className="w-10/12 font-sans ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
                         </div>
-                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-20">
+                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-16">
                             <FaHandSparkles className="text-stone-500 relative left-5 text-center text-xl"/>
-                            <input type="text" placeholder="What’s your most useless skill ?" className="w-10/12 ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
+                            <input type="text" placeholder="What’s your most useless skill ?" className="w-10/12 font-sans ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
                         </div>
                     </div>
                     <div className="w-[50%] flex flex-col gap-4">
-                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-20">
+                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-16">
                             <RiSpeakLine className="text-stone-500 relative left-5 text-center text-2xl"/>
-                            <input type="text" placeholder="Languages you speak ?" className="w-10/12 ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
+                            <input type="text" placeholder="Languages you speak ?" className="w-10/12 font-sans ml-10 outline-none rounded-lg h-12 bg-stone-50"/>
                         </div>
-                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-20">
+                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-16">
                             <FaMusic className="text-stone-500 relative left-5 text-center text-xl"/>
-                            <input type="text" placeholder="What was your favorite song ?" className="w-10/12 ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
+                            <input type="text" placeholder="What was your favorite song ?" className="w-10/12 font-sans ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
                         </div>
-                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-20">
+                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-16">
                             <BiSolidBookAlt className="text-stone-500 relative left-5 text-center text-xl"/>
-                            <input type="text" placeholder="What would your biography title be ?" className="w-10/12 ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
+                            <input type="text" placeholder="What would your biography title be ?" className="w-10/12 font-sans ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
                         </div>
-                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-20">
+                        <div className="w-11/12 flex justify-center items-center bg-stone-50 rounded-lg h-16">
                             <BiLaugh className="text-stone-500 relative left-5 text-center text-xl"/>
-                            <input type="text" placeholder="What’s a fun fact about you ?" className="w-10/12 ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
+                            <input type="text" placeholder="What’s a fun fact about you ?" className="w-10/12 font-sans ml-10 outline-none rounded-lg h-16 bg-stone-50"/>
                         </div>
                     </div>
                 </div>
