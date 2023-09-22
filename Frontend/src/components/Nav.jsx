@@ -6,9 +6,10 @@ import Login from "./Login";
 import "aos/dist/aos.css"
 import Aos from "aos";
 import Swal from "sweetalert2";
-import { NavLink } from "react-router-dom"
+import { NavLink, Navigate, useNavigate } from "react-router-dom"
 import axios from "axios";
 function Nav() {
+    const { Navigate } = useNavigate();
     const { Loading,setLoading,listing,setlisting,country,setcountry,Logout,setsignUpModal,modal,setmodal,loginModal,setloginModal,user,setuser,Profilemodal,setProfilemodal } = useContext(MyContext)
     console.log(user)
     useEffect(()=>{
@@ -66,7 +67,7 @@ function Nav() {
             <div data-aos="fade-right" className={Profilemodal ? "w-[12em] bg-white profilemodal absolute top-16 float-right rounded-lg shadow-xl h-[20em] z-50 border-[1px]" : "hidden"}>
                     <div className="">
                         <ul>
-                            <NavLink onClick={()=>{setProfilemodal(false)}} to="profile"><li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">Profile</li></NavLink>
+                            <NavLink onClick={()=>{setProfilemodal(false)}}to="/profile" ><li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">Profile</li></NavLink>
                             <li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">WishLists</li>
                             <p className="text-center text-stone-300">-------------------------------------</p>
                             <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Account</li>

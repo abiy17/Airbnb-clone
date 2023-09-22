@@ -7,10 +7,12 @@ import { BrowserRouter,Route,Routes } from "react-router-dom"
 import ProfilePage from './pages/ProfilePage'
 import Swal from "sweetalert2"
 import CreateProfile from './pages/CreateProfile'
+import DetailedList from './pages/DetailedList'
 export function App() {
   const [ user,setuser ] = useState({
     user: null
   })
+  const [ selectedList,setselectedList ] = useState([])
   const [ filterTax,setfilterTax ] = useState(false)
   const [ modal,setmodal ] = useState(false);
   const [ Loading,setLoading ] = useState(true)
@@ -36,6 +38,7 @@ export function App() {
       })
     }
   },[])
+    console.log(selectedList);
   const Logout =()=>{
     localStorage.removeItem(`user`)
     setuser({
@@ -47,11 +50,14 @@ export function App() {
         button: "Aww yiss!",
       });
 }
+  useEffect(()=>{
+    console.log(selectedList)
+  },[])
   return (
     <>
       <MyContext.Provider value={{ 
         filterTax,setfilterTax ,Logout,Profilemodal,country,setcountry
-        ,setProfilemodal,
+        ,setProfilemodal,selectedList,setselectedList,
         Loading,setLoading,modal,setmodal,
         loginModal,setloginModal,listing,setlisting,
         signUpModal,setsignUpModal,user,setuser
@@ -63,6 +69,7 @@ export function App() {
             <Route path='/' element={<LP />}/>
             <Route path='/profile' element={<ProfilePage />}/>
             <Route path='/profile/createProfile' element={<CreateProfile />}/>
+            <Route path='/DetailedList' element={<DetailedList />}/>
           </Routes>
       </BrowserRouter>
       </MyContext.Provider>
