@@ -28,7 +28,7 @@ function HouseCont(props) {
                     <div className="flex flex-col gap-1">
                         <div className="flex gap-10 float-right">
                             <p className="font-bold font-sans w-9/12 overflow-hidden h-5">{props.address.street}</p>
-                            <p className="flex text-[.8em]"><FaStar />{props.review_scores === undefined ? "No reviews" : props.review_scores.review_scores_rating}</p>
+                            <p className="flex text-[.8em]"><FaStar />{props.review_scores === undefined ? "No reviews" : props.review_scores.review_scores_rating/10}</p>
                         </div>
                         <p className="text-stone-500">Hosted By {props.host.host_name}</p>
                         <p className="text-stone-500">Duration: {props.minimum_nights} nights</p>
