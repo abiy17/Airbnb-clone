@@ -1,16 +1,16 @@
 import { useContext, useState } from "preact/hooks";
 import MyContext from "../context";
-import { FaHome, FaStar } from "react-icons/fa";
+import { FaHome, FaStar, FaUser } from "react-icons/fa";
 import { FaShare } from "react-icons/fa6";
 import { AiOutlineHeart } from "react-icons/ai";
 import Correct from "../assets/correct.svg"
 function DetailedPage() {
     const { selectedList,setselectedList } = useContext(MyContext)
-    window.scrollTo(0,0)
     const [clip,setclip] = useState(false)
+    window.scrollTo(0,0)
     return (
-        <div className="w-10/12 mt-5 h-[200vh] m-auto">
-            <div className="">
+        <div className="w-10/12 mt-5 m-auto">
+            <div className="flex flex-col">
                 <div className="w-full h-12 flex">
                     <div className="w-8/12">
                         <p className="font-bold text-2xl flex gap-3 mt-2"><FaHome />{ selectedList.length === 0 ? "No data" : selectedList[0].name }</p>
@@ -24,7 +24,7 @@ function DetailedPage() {
                     <img src={ selectedList.length === 0 ? "No data" : selectedList[0].images.picture_url} alt="" className="h-[100%] rounded-xl"/>
                     <p className="text-lg">{ selectedList.length === 0 ? "No data" : selectedList[0].description}</p>
                 </div>  
-                <div className="w-full h-[80vh] mt-14 flex">
+                <div className="w-full min-h-[100vh] mt-24 flex">
                     <div className="w-7/12 h-full">
                         <div className="flex flex-col gap-1">
                             <p className="font-bold text-2xl flex gap-3 mt-2">Address: {selectedList.length === 0 ? "No data" : selectedList[0].address.street}</p>
@@ -41,26 +41,43 @@ function DetailedPage() {
                             <div className={clip ? "flex flex-col h-[20em] overflow-clip gap-2 h-4/12 w-11/12" : "flex flex-col h-[10em] overflow-clip gap-2 h-4/12 w-11/12"}>
                                 <p className="text-stone-400">-----------------------------------------------------------------------------------</p>
                                 <p className="font-bold font-sans">Hosted By { selectedList.length === 0 ? "" :selectedList[0].host.host_name } </p>
-                                <p>I will response { selectedList.length === 0 ? "" : selectedList[0].host.host_response_time}</p>
-                                <p className="w-full text-stone-700 font-sans"> { selectedList.length === 0 ? "" : selectedList[0].host.host_about === "" ? "The user have no Information" : selectedList[0].host.host_about}</p>
+                                <p className="font-sans font-semibold">I will response { selectedList.length === 0 ? "" : selectedList[0].host.host_response_time}</p>
+                                <p className="w-full font-sans text-sm"> { selectedList.length === 0 ? "" : selectedList[0].host.host_about === "" ? "The user have no Information" : selectedList[0].host.host_about}</p>
                                 <p className="text-stone-400">-----------------------------------------------------------------------------------</p>
-                            </div><p className="cursor-pointer" onClick={()=>{setclip(true)}}>Show More...</p>
+                            </div><p className={ clip ? "hidden"  : "cursor-pointer"} onClick={()=>{setclip(true)}}>Show More...</p>
                         </div>
-                        <div className="mt-10">
+                        <div className="mt-24">
                                 <p className="font-bold text-2xl font-sans">What This place Offers</p>
-                                <div className="grid grid-cols-2 gap-4 pl-10 pt-10">
+                                <div className="grid grid-cols-2 gap-4 pl-5 pt-10">
                                     { selectedList.length === 0 ? "No data" : selectedList[0].amenities.length === 0 ? "There is No data here" : selectedList[0].amenities.map(item =>{
                                         return <p className="flex gap-2 items-center"> <img src={Correct} alt="" className="w-5"/> {item}</p>
                                     })}
                                 </div>
                         </div>
+                        
                         </div>
                     </div>
                     <div className="w-5/12">
-                        <div className="w-10/12 ml-10 mt-20 shadow-xl sticky top-[6em] border-[1px]  h-[28em] rounded-xl"></div>
+                        <div className="w-10/12 ml-10 mt-20 shadow-xl sticky top-[10em] border-[1px]  h-[28em] rounded-xl"></div>
                     </div>
                 </div>
+
             </div>
+            <div className="w-full min-h-[30em] mt-24">
+                 <p className="font-bold text-2xl">{ selectedList.length === 0 ? "No data" : selectedList[0].reviews.length === 0 ? "No Reviews" : selectedList[0].reviews.length } Reveiws</p>
+                <div className="w-full h-full overflow-clip grid grid-cols-2">
+                     { selectedList.length === 0 ? "No data" : selectedList[0].reviews.length === 0 ? "No Reviews" : selectedList[0].reviews.map(item =>{
+                        return <div className="w-11/12 h-56 shadow-lg rounded-lg overflow-clip">
+                                 <div className="flex gap-2 mt-10 ml-4 relative left-3 font-bold">
+                                        <FaUser />
+                                        <p>{ item.reviewer_name }</p>
+                                </div>
+                                <p>{ item.date.$date }</p>
+                                <p className="w-11/12 text-sm ml-10 mt-5 font-sans">{ item.comments }</p>
+                                </div>
+                        }) }
+                                </div>
+                        </div>
         </div>
       );
 }
