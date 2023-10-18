@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
     email: { type:String, required:true,unique:true },
     password: { type:String,required:true },
     phoneNumber: { type:Number,require:true },
+    Wishlists: []
 })
 
 UserSchema.statics.signup = async function(username,email,password,phoneNumber){

@@ -9,9 +9,13 @@ app.use(cors());
 
 app.get(`/listing`,mongo.getListing)
 
+app.get(`/users`,mongo.getUsers)
+
 app.post(`/searching`,mongo.Searching)
 
 app.post(`/signup`,mongo.createUser)
+
+app.post(`/AddWishlists/:id`,mongo.AddWishlists)
 
 app.post(`/login`,mongo.loggingIN)
 

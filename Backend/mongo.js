@@ -54,7 +54,39 @@ const Searching = async ( req,res,next ) =>{
     }
 }
 
+const AddWishlists = async (req,res,next)=>{
+    const { id } = req.params
+    const { name,picture_url,property_type,room_type } = req.body
+    try{
+        user = await UserModel.findById(id)
+        if( user.Wishlists.find(item => item.name === name)){
+            res.status(400).json({
+                msge: "already added to wishlists"
+            })
+        }
+        else{
+            user.Wishlists.push({ name,picture_url,property_type,room_type })
+            await user.save()
+            res.status(200).json({ user })
+        }
+    }
+    catch(err){
+        res.status(400).json({ mssge: "failed to add wishlists" })
+    } 
+}
+
+const getUsers = async (req,res,next)=>{
+    try{
+        user = await UserModel.find();
+        res.status(200).json({ user })
+    }catch(err){
+        res.status(400).json({ msge: "couldn't get user data" })
+    }
+}
+
 exports.createUser = createUser;
 exports.loggingIN = loggingIN;
 exports.getListing = getListing;
 exports.Searching = Searching;
+exports.AddWishlists = AddWishlists;
+exports.getUsers = getUsers;

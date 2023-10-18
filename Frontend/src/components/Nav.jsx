@@ -68,7 +68,7 @@ function Nav() {
                     <div className="">
                         <ul>
                             <NavLink onClick={()=>{setProfilemodal(false)}}to="/profile" ><li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">Profile</li></NavLink>
-                            <li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">WishLists</li>
+                            <NavLink to="/wishlists"><li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">WishLists</li></NavLink>
                             <p className="text-center text-stone-300">-------------------------------------</p>
                             <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Account</li>
                             <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Manage Listing</li>
