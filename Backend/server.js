@@ -3,6 +3,7 @@ const app = express();
 const cors = require(`cors`)
 const mongo = require(`./mongo`)
 const bodyParser = require(`body-parser`)
+const upload = require(`./utils/multer`)
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors());
@@ -12,6 +13,8 @@ app.get(`/listing`,mongo.getListing)
 app.get(`/users`,mongo.getUsers)
 
 app.post(`/searching`,mongo.Searching)
+
+app.post(`/createProfile/:id`,upload.single(`images`),mongo.createProfile)
 
 app.post(`/signup`,mongo.createUser)
 

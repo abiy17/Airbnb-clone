@@ -68,7 +68,7 @@ export function App() {
     <>
       <MyContext.Provider value={{
         filterTax,setfilterTax ,Logout,Profilemodal,country,setcountry,userData,setuserData,username,setusername,email,setemail,currentUser,setcurrentUser,
-        setProfilemodal,selectedList,setselectedList,Loading,setLoading,modal,setmodal,password,setpassword,phoneNumber,userData,setuserData,
+        setProfilemodal,selectedList,setselectedList,Loading,setLoading,modal,setmodal,password,setpassword,phoneNumber,
         loginModal,setloginModal,listing,setlisting,signUpModal,setsignUpModal,user,setuser,setphoneNumber,countryCode,setcountryCode
          }}>
       <BrowserRouter>

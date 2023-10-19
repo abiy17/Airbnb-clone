@@ -2,6 +2,7 @@ const mongoose = require(`mongoose`)
 const listingsModel = require(`./mongoose-Schema/listingsAndReviews`)
 const UserModel = require(`./mongoose-Schema/userSchema`)
 const jwt = require(`jsonwebtoken`)
+const cloudinary = require(`./utils/cloudinary`)
 mongoose.connect('mongodb+srv://chuna:kdb17aby@cluster0.17tjqjc.mongodb.net/');
 
 const createToken =(_id)=>{
@@ -18,6 +19,21 @@ const createUser = async (req,res,next) =>{
     }
     catch(err){
         res.status(400).json({ mssge: "error signup" })
+    }
+}
+
+const createProfile = async (req,res,next) =>{
+    const { id } = req.params
+    const { school,placeOfLiving,Obsession,skil,language,song,BiographyTitle,funFact } = req.body
+    try{
+        let result = await cloudinary.v2.uploader.upload(req.file.path)
+        user = await UserModel.findById(id)
+        user.Profile.push({ image:result.secure_url ,school,placeOfLiving,Obsession,skil,language,song,BiographyTitle,funFact})
+        user.save();
+        res.status(200).json({ msge: "profile created sucessfully!" })
+    }
+    catch(err){
+        res.status(400).json({ msge: err })
     }
 }
 
@@ -85,6 +101,7 @@ const getUsers = async (req,res,next)=>{
 }
 
 exports.createUser = createUser;
+exports.createProfile = createProfile;
 exports.loggingIN = loggingIN;
 exports.getListing = getListing;
 exports.Searching = Searching;

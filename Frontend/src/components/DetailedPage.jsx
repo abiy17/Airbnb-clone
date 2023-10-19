@@ -6,7 +6,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import Correct from "../assets/correct.svg"
 import { useNavigate } from "react-router-dom";
 function DetailedPage() {
-    const { selectedList,setselectedList,user } = useContext(MyContext)
+    const { selectedList,user } = useContext(MyContext)
     const [clip,setclip] = useState(false)
     const Navigate = useNavigate()
     window.scrollTo(0,0)

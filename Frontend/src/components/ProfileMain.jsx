@@ -4,7 +4,8 @@ import Correct from "../assets/correct.svg"
 import ProfileFooter from "./ProfileFooter";
 import { NavLink } from "react-router-dom";
 function ProfileMain() {
-    const { user,setuser } = useContext(MyContext)
+    const { user,setuser,currentUser } = useContext(MyContext)
+    console.log(currentUser)
     return ( 
     <>
         <div className="flex col lg:flex">
@@ -12,9 +13,9 @@ function ProfileMain() {
                 <div className="w-[20.7em] relative left-[-1em] profile-div h-[15em] rounded-3xl">
                     <div className="flex gap-2 h-full m-auto">
                         <div className="ml-12">
-                        <div className="w-28 mt-5 h-28 rounded-full bg-stone-800">
-                            <p className="text-center text-white font-bold text-6xl pt-6">C</p>
-                        </div>
+                        { currentUser === null ? <div className=""></div> : currentUser.Profile.length === 0 ? <div className="w-28 mt-5 h-28 rounded-full bg-stone-800">
+                            <p className="text-center text-white font-bold text-6xl pt-6">{user.user === null ? <p>loading..</p> : user.user.data.user.username.charAt(0)}</p>
+                        </div> : <img src={ currentUser === undefined ? "" : currentUser.Profile[0].image } alt="" className="w-32 mt-10 ml-3 h-20 rounded-full"/> }
                         <div className="ml-5 mt-3">
                             <p className="font-bold font-sans text-2xl">{user.user === null ? <p>loading..</p> : user.user.data.user.username.slice(0,5)}</p>
                             <p className="font-sans">Guest</p>
@@ -22,8 +23,8 @@ function ProfileMain() {
                         </div>
                         <div className="h-full w-full">
                             <div className="font-sans mt-20 ml-10">
-                                <p className="font-bold text-2xl">2</p>
-                                <p className="text-[.7em]">Days on airbnb</p>
+                                <p className="font-bold text-2xl">Welcome</p>
+                                <p className="text-[.7em]">to airbnb</p>
                             </div>
                         </div>
                     </div>
@@ -50,14 +51,16 @@ function ProfileMain() {
                     </div>
                 </div>
             </div>
-            <div className="w-6/12 h-[10vh] relative top-[18em]">
+            { currentUser === null ? <div className=""></div> : currentUser === undefined ||currentUser.Profile.length === 0  ? <div className="w-6/12 h-[10vh] relative top-[18em]">
                 <div className="ml-3">
                     <p className="text-stone-300">-------------------------------------------------------------------</p>
                     <p className="font-sans font-bold mt-6 ml-3 w-5/12 text-[1.3em]">It's time to create your profile</p>
                     <p className="w-72 text-stone-500 ml-3 mt-5">Your Airbnb profile is an important part of every reservation. Create yours to help other Hosts and guests get to know you.</p>
                     <NavLink to="createProfile"><button className="w-3/12 rounded-xl ml-3 mt-6 h-12 bg-pink-600 text-white font-semibold">Create Profile</button></NavLink>
                 </div>
-            </div>
+            </div> : <div className="w-6/12 relative left-[-5em] h-[50em]">
+                
+            </div> }
         </div>
         <ProfileFooter />
     </>

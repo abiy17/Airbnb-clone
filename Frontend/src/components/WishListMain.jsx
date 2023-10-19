@@ -3,9 +3,15 @@ import MyContext from "../context";
 import { useNavigate } from "react-router-dom";
 
 function WishListMain() {
-    const { currentUser,setcurrentUser } = useContext(MyContext)
+    const { currentUser,setcurrentUser,setselectedList,listing } = useContext(MyContext)
     const Navigate = useNavigate()
     console.log(currentUser)
+
+    const ViewInfo=(Name)=>{
+        let filteredList = listing.filter(item => item.name === Name)
+        setselectedList(filteredList)
+        Navigate(`/DetailedList`)
+    }
     return (
         <div className="min-h-[20em] flex flex-col">
             <div className="w-11/12 min-h-[5em] m-auto mt-5">
@@ -24,7 +30,7 @@ function WishListMain() {
                             <p className="font-bold relative left-4 mt-3">{item.name}</p>
                             <p className="text-stone-500 mt-2 font-mono font-semibold ml-4">type: { item.property_type }</p>
                             <p className="text-stone-500 mt-2 font-mono font-semibold ml-4">Room Type: { item.room_type }</p>
-                            <button className="w-11/12 hover:scale-90 duration-300 rounded-xl ml-3 mt-6 h-12 bg-pink-600 text-white font-semibold">View full info</button>
+                            <button onClick={()=>ViewInfo(item.name)} className="w-11/12 hover:scale-90 duration-300 rounded-xl ml-3 mt-6 h-12 bg-pink-600 text-white font-semibold">View full info</button>
                         </div>
                     </div>
                 }) }
