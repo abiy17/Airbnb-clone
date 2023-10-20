@@ -54,7 +54,10 @@ function CreateMain() {
                     progress: undefined,
                     theme: "light",
                     });
-                
+                setTimeout(() => {
+                    Navigate(`/`)
+                    window.location.reload()
+                }, 3000);
             }
             else if( response.status === 400 ){
                 toast.error('profile image is required', {

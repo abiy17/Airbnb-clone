@@ -35,6 +35,9 @@ function Signup() {
                     icon: "success",
                     button: "Aww yiss!",
                   });
+                  setTimeout(() => {
+                    window.location.reload()
+                  }, 2000);
             }).catch(err =>{
                 console.log(err)
                 seterrorEmail(true)
