@@ -3,8 +3,11 @@ const listingsModel = require(`./mongoose-Schema/listingsAndReviews`)
 const UserModel = require(`./mongoose-Schema/userSchema`)
 const jwt = require(`jsonwebtoken`)
 const cloudinary = require(`./utils/cloudinary`)
+const stripe = require("stripe")("sk_test_51O6ARmDwZfua1AHPDSJUDRZZC1wZAqHYm39d7dwhkjxZFbW6kKQkWypuHn4kvugQ8IA6Hwk7yR2laexuglYmjRTy009pptrfhy")
 mongoose.connect('mongodb+srv://chuna:kdb17aby@cluster0.17tjqjc.mongodb.net/');
-
+const express = require("express")
+const app = express()
+app.use(express.static(`public`))
 const createToken =(_id)=>{
     return jwt.sign({ _id },`airbnb`,{ expiresIn: `3d` })
 }
@@ -100,6 +103,27 @@ const getUsers = async (req,res,next)=>{
     }
 }
 
+// const CreateSession = async ( req,res,next )=>{
+//     try {
+//         const { price, currency, RoomId } = req.body;
+//         const charge = await stripe.checkout.sessions.create({
+//           mode: "payment",
+//           line_items: [
+//             {
+//             price 
+//             }
+//           ],
+//           success_url: "http://localhost:5173/DetailedList",
+//           cancel_url: "http://localhost:5173/DetailedList"
+//         });
+    
+//         res.status(200).send('Payment successful');
+//       } catch (error) {
+//         console.error(error);
+//         res.status(400).send('Payment failed');
+//       }
+// }
+
 exports.createUser = createUser;
 exports.createProfile = createProfile;
 exports.loggingIN = loggingIN;
@@ -107,3 +131,4 @@ exports.getListing = getListing;
 exports.Searching = Searching;
 exports.AddWishlists = AddWishlists;
 exports.getUsers = getUsers;
+//exports.CreateSession = CreateSession;

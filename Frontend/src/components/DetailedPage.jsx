@@ -6,10 +6,11 @@ import { AiOutlineHeart } from "react-icons/ai";
 import Correct from "../assets/correct.svg"
 import { useNavigate } from "react-router-dom";
 function DetailedPage() {
-    const { selectedList,user } = useContext(MyContext)
+    const { selectedList,user,filterTax,setfilterTax } = useContext(MyContext)
     const [clip,setclip] = useState(false)
+    const [ ViewReview ,setViewReview] = useState(false)
     const Navigate = useNavigate()
-    window.scrollTo(0,0)
+    console.log(selectedList)
     const HandleClick=()=>{
         var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -44,6 +45,10 @@ function DetailedPage() {
             })
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
+    }
+    let TotalFee
+    if( selectedList.length !== 0 ){
+        TotalFee = selectedList[0].price.$numberDecimal * selectedList[0].minimum_nights
     }
     return (
         <div className="w-10/12 mt-5 m-auto">
@@ -94,14 +99,63 @@ function DetailedPage() {
                         </div>
                     </div>
                     <div className="w-5/12">
-                        <div className="w-10/12 ml-10 mt-20 shadow-xl sticky top-[10em] border-[1px]  h-[28em] rounded-xl"></div>
+                        <div className="w-10/12 ml-10 mt-20 shadow-xl sticky top-[10em] border-[1px]  h-[29em] rounded-xl">
+                            <div className="w-11/12 h-20 m-auto flex">
+                                <div className="w-[50%] h-[50%] mt-5 flex justify-start items-center">
+                                    <p className=" font-semibold text-2xl mr-2">${selectedList.length === 0 ? "No Data" : selectedList[0].price.$numberDecimal}</p>nights
+                                </div>
+                                <div className="w-[50%] h-[50%] mt-5 flex justify-center items-center gap-3">
+                                    <p className="font-bold flex gap-2 text-sm"><FaStar />{ selectedList.length === 0 ? "No Data" : selectedList[0].review_scores === undefined ? "No rating" : selectedList[0].review_scores.review_scores_rating/10 }</p>
+                                    <p className="text-stone-600 text-sm">{ selectedList.length === 0 ? "No data" : selectedList[0].reviews.length === 0 ? "No Reviews" : selectedList[0].reviews.length } Reviews</p>
+                                </div>
+                            </div>
+                            <div className="flex relative left-3 top-">
+                               <div className="w-[46%] rounded-b-0 border-e-black h-16 border-[1px]  border-stone-500 flex flex-col justify-center items-start pl-3">
+                                    <p className="font-bold text-sm">Check In</p>
+                                    <input type="date" name="" id="" className="h-4 border-none mt-1 outline-none"/>
+                               </div>
+                               <div className="w-[46%] h-16 border-[1px] border-s-stone-50  border-stone-500 flex flex-col justify-center items-start pl-3">
+                                    <p className="font-bold text-sm">Check out</p>
+                                    <input type="date" name="" id="" className="h-4 border-none mt-1 outline-none"/>
+                               </div>
+                            </div>
+                            <div className="flex relative left-3 top-">
+                               <div className="w-11/12 rounded-b-xl border-e-black h-16 border-[1px] border-stone-500 flex flex-col justify-center items-start pl-3">
+                                    <p className="font-bold text-sm">Guests</p>
+                                    <input type="number" placeholder="Enter number of Guests" name="" id="" className="h-4 w-11/12 border-none mt-1 outline-none"/>
+                               </div>
+                            </div>
+                            <button className="w-11/12 hover:scale-105 active:opacity-80 duration-300 text-white font-bold h-14 rounded-xl bg-pink-600 ml-3 mt-5">Reserve</button>
+                            <div className="h-40 w-11/12 m-auto mt-3">
+                                <p className="text-center text-stone-800 mb-2">You won't be charged yet</p>
+                                <div className="flex flex-col">
+                                    <div className="w-11/12 h-7 m-auto">
+                                        <p className="underline flex gap-2">$ {selectedList.length === 0 ? "No data" :selectedList[0].price.$numberDecimal} X {selectedList.length === 0 ? "No data" : selectedList[0].minimum_nights} min nights</p>
+                                        <div className="float-right relative top-[-1.2em]"><p>${ TotalFee }</p></div>
+                                    </div>
+                                    <div className="w-11/12 h-16 m-auto mt-2">
+                                        <p className="underline">Airbnb Service fee</p>
+                                        <div className="float-right relative top-[-1.2em]">
+                                            <p >$100</p>
+                                        </div>
+                                        <p className="text-stone-400 ml-5 mt-4">--------------------------------------------------</p>
+                                    </div>
+                                </div>
+                                <div className=" w-11/12 h-10 m-auto">
+                                    <p className="font-bold">Total Before Tax</p>
+                                    <div className="float-right font-bold relative top-[-1.5em]">$ { TotalFee + 100 }</div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
 
             </div>
-            <div className="w-full min-h-[30em] mt-24">
+            <div className="w-full min-h-[10em] mt-24">
                  <p className="font-bold text-2xl">{ selectedList.length === 0 ? "No data" : selectedList[0].reviews.length === 0 ? "No Reviews" : selectedList[0].reviews.length } Reveiws</p>
-                <div className="w-full h-full overflow-clip grid grid-cols-2">
+                 { ViewReview ? <p className="mt-3 cursor-pointer underline" onClick={()=>setViewReview(false)}>Hide reviews</p> : <p onClick={()=>setViewReview(true)} className="mt-3 cursor-pointer underline">View Reviews</p> }
+                <div className={ ViewReview ? "w-full h-full overflow-clip grid grid-cols-2": "w-full h-2 overflow-clip grid grid-cols-2" }>
                      { selectedList.length === 0 ? "No data" : selectedList[0].reviews.length === 0 ? "No Reviews" : selectedList[0].reviews.map(item =>{
                         return <div className="w-11/12 h-56 shadow-lg rounded-lg overflow-clip">
                                  <div className="flex gap-2 mt-10 ml-4 relative left-3 font-bold">

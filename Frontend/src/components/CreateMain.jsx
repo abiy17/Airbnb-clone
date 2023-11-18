@@ -108,7 +108,7 @@ function CreateMain() {
                     <p className="text-white font-bold text-[7em]">C</p>
                 </div>
                 <label className="w-24 h-10 rounded-full bg-white z-20 flex gap-3 font-semibold shadow-xl justify-center items-center cursor-pointer relative top-[-1em] left-16">
-                <input onChange={(e)=>{ setimage(e.target.files) }} type="file" accept="image/png,image/jpeg,image/jpg" hidden/>
+                <input onChange={(e)=>{ setimage(e.target.files) }} type="file" accept="image/png,image/jpeg,image/JPG" hidden/>
                     <FaCamera />
                     <p>Add</p>   
                 </label>
