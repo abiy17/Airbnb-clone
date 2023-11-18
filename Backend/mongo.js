@@ -103,26 +103,45 @@ const getUsers = async (req,res,next)=>{
     }
 }
 
-// const CreateSession = async ( req,res,next )=>{
-//     try {
-//         const { price, currency, RoomId } = req.body;
-//         const charge = await stripe.checkout.sessions.create({
-//           mode: "payment",
-//           line_items: [
-//             {
-//             price 
-//             }
-//           ],
-//           success_url: "http://localhost:5173/DetailedList",
-//           cancel_url: "http://localhost:5173/DetailedList"
-//         });
-    
-//         res.status(200).send('Payment successful');
-//       } catch (error) {
-//         console.error(error);
-//         res.status(400).send('Payment failed');
-//       }
-// }
+const CreateSession = async ( req,res,next )=>{
+    try {
+        const { checkInDate, checkOutDate, numberOfGuests, price, houseName,images,userId } = req.body;
+
+        // Create a Stripe Checkout session
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: [
+            {
+                price_data: {
+                currency: 'usd',
+                product_data: {
+                    name: houseName,
+                    description: `Guests: ${numberOfGuests}`,
+                    images: images
+                },
+                unit_amount: price * 100, // Stripe deals with amounts in cents
+                },
+                quantity: 1,
+            },
+            ],
+            mode: 'payment',
+            success_url: 'https://yourwebsite.com/success', // Redirect to this URL after successful payment
+            cancel_url: 'http://localhost:5173', // Redirect to this URL if the user cancels
+            metadata: {
+                userId,
+                checkInDate,
+                checkOutDate,
+                numberOfGuests,
+                houseName
+              },
+        });
+
+        res.json({ sessionUrl: session.url });
+      }catch (error) {
+        console.error(error);
+        res.status(400).send('Payment failed');
+      }
+}
 
 exports.createUser = createUser;
 exports.createProfile = createProfile;
@@ -131,4 +150,4 @@ exports.getListing = getListing;
 exports.Searching = Searching;
 exports.AddWishlists = AddWishlists;
 exports.getUsers = getUsers;
-//exports.CreateSession = CreateSession;
+exports.CreateSession = CreateSession;

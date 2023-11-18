@@ -29,7 +29,7 @@ function Nav() {
         <div className="flex justify-around items-center w-full h-[5em] shadow-sm sticky top-0 z-50 bg-white">
             <div className="text-red-500 flex gap-1 items-center cursor-pointer">
                 <FaAirbnb className="text-4xl"/>
-                <p className="font-bold text-2xl">airbnb</p>
+                <p className="font-semibold text-2xl">airbnb</p>
             </div>
             <div className="w-[50%] flex items-center">
                 <input onChange={(e)=>setcountry(e.target.value)} placeholder="Search By Country" type="text" className=" rounded-3xl pl-10 font-mono font-semibold w-[90%] h-12 border-[1px] shadow-md outline-1 outline-red-400" />
@@ -69,10 +69,10 @@ function Nav() {
                         <ul>
                             <NavLink onClick={()=>{setProfilemodal(false)}}to="/profile" ><li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">Profile</li></NavLink>
                             <NavLink to="/wishlists"><li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">WishLists</li></NavLink>
-                            <p className="text-center text-stone-300">-------------------------------------</p>
+                            <p className="text-center text-stone-300">-----------------------</p>
                             <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Account</li>
                             <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Manage Listing</li>
-                            <p className="text-center text-stone-300">-------------------------------------</p>
+                            <p className="text-center text-stone-300">-----------------------</p>
                             <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-4 duration-300"><FaQuestion />Help Center</li>
                             <li onClick={Logout} className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-4 duration-300"><FaPowerOff />Log out</li>
                         </ul>
