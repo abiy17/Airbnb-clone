@@ -54,7 +54,7 @@ const loggingIN = async ( req,res,next )=>{
 let listing 
 const getListing = async ( req,res,next) =>{
     try{
-        listing = await listingsModel.find();
+        listing = await listingsModel.find()
         res.status(200).json(listing)
     }
     catch(err){

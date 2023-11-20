@@ -6,8 +6,8 @@ import { FaSadCry } from "react-icons/fa";
 function Main() {
     const { Loading,setLoading,listing,setlisting } = useContext(MyContext)
     return (
-        <div className=" pl-6 mt-7 pr-6 grid grid-cols-4 gap-4">
-            {Loading ?  <div className="grid w-[80em] grid-cols-4 gap-3 ml-2">
+        <div className=" pl-6 mt-7 pr-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {Loading ?  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  w-[80em] gap-3 ml-2">
             <Skeleton />
             <Skeleton />
             <Skeleton />

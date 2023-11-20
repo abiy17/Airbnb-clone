@@ -27,16 +27,16 @@ function Nav() {
     }
     return (
         <div className="flex justify-around items-center w-full h-[5em] shadow-sm sticky top-0 z-50 bg-white">
-            <div className="text-red-500 flex gap-1 items-center cursor-pointer">
+            <div className="hidden text-red-500 sm:flex gap-1 items-center cursor-pointer">
                 <FaAirbnb className="text-4xl"/>
                 <p className="font-semibold text-2xl">airbnb</p>
             </div>
-            <div className="w-[50%] flex items-center">
-                <input onChange={(e)=>setcountry(e.target.value)} placeholder="Search By Country" type="text" className=" rounded-3xl pl-10 font-mono font-semibold w-[90%] h-12 border-[1px] shadow-md outline-1 outline-red-400" />
-                <div className="w-10 hover:opacity-70 duration-300 relative left-[-3em] h-7 flex justify-center items-center rounded-full bg-red-500 text-white">
+            <div className="sm:w-[59%] flex items-center">
+                <input onChange={(e)=>setcountry(e.target.value)} placeholder="Search By Country" type="text" className="pl-5 rounded-3xl sm:pl-10 w-[99%] h-12 border-[1px] shadow-md outline-1 outline-red-400" />
+                <div className="w-10 sm:w-20 h-8 hover:opacity-70 duration-300 relative left-[-2.5em] flex justify-center items-center rounded-full bg-red-500 text-white">
                     <FaSearch onClick={Searching} className=" cursor-pointer"/>
                 </div>
-               <a href="https://www.airbnb.com/host/homes" className="w-[29%] duration-300 h-10 hover:bg-stone-50 cursor-pointer font-sans relative flex justify-center items-center rounded-3xl">
+               <a href="https://www.airbnb.com/host/homes" className="w-[99%] hidden text-sm duration-300 h-10 hover:bg-stone-50 cursor-pointer font-sans relative sm:flex justify-center items-center rounded-3xl">
                         <p>Airbnb your home</p>
                </a>
             </div>
@@ -45,7 +45,7 @@ function Nav() {
                     <FaBars />
                     <FaUserCircle className="text-2xl"/>
                 </div>
-                <div  className={modal ? "w-[10em] bg-white z-auto absolute top-16 rounded-lg shadow-xl h-[10em] border-[1px]" : "hidden"}>
+                <div  className={modal ? "w-[10em] bg-white z-auto left-[-10em] sm:left-0 absolute top-16 rounded-lg shadow-xl h-[10em] border-[1px]" : "hidden"}>
                     <div className="">
                         <ul>
                             <li onClick={()=>{setsignUpModal(true)}} className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">Sign Up</li>
@@ -61,10 +61,10 @@ function Nav() {
                 </div>
             </div> : <div className="flex flex-col relative left-[-2em]">
             <div onClick={()=>{setProfilemodal(!Profilemodal)}}  className="flex gap-3 hover:shadow-lg duration-200 rounded-3xl p-3 h-11 cursor-pointer border-[1px]  justify-center items-center">
-                <p  className="font-bold font-sans">{user.user.data.user.username}</p>
+                <p  className="font-bold font-sans sm:block hidden">{user.user.data.user.username}</p>
                 { currentUser === undefined || currentUser.Profile.length === 0 ? <FaUserCircle className="text-2xl"/> :   <img src={ currentUser.Profile[0].image } alt="" className="w-8 h-8 rounded-full"/>}
                 </div>
-            <div data-aos="fade-right" className={Profilemodal ? "w-[12em] bg-white profilemodal absolute top-16 float-right rounded-lg shadow-xl h-[20em] z-50 border-[1px]" : "hidden"}>
+            <div data-aos="fade-right" className={Profilemodal ? "w-[12em] left-[-12em] sm:left-0 bg-white profilemodal absolute top-16 float-right rounded-lg shadow-xl h-[20em] z-50 border-[1px]" : "hidden"}>
                     <div className="">
                         <ul>
                             <NavLink onClick={()=>{setProfilemodal(false)}}to="/profile" ><li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">Profile</li></NavLink>
