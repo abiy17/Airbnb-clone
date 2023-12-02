@@ -90,9 +90,9 @@ function DetailedPage() {
     }
     return (
         <div className="w-10/12 mt-5 m-auto">
-            <div className="flex flex-col">
-                <div className="w-full h-12 flex">
-                    <div className="w-8/12">
+            <div className="flex flex-col sm:gap-0 gap-10">
+                <div className="w-full sm:flex">
+                    <div className="sm:w-8/12 w-[30em] overflow-x-clip">
                         <p className="font-bold text-2xl flex gap-3 mt-2"><FaHome />{ selectedList.length === 0 ? "No data" : selectedList[0].name }</p>
                     </div>
                     <div className="w-4/12 float-right flex gap-5 justify-end pt-3">
@@ -100,7 +100,7 @@ function DetailedPage() {
                         <p onClick={()=>HandleClick()} className="flex gap-3 underline cursor-pointer"><AiOutlineHeart className="text-lg"/> Save</p>
                     </div>
                 </div>
-                <div className="w-full h-[22em] mt-4 rounded-xl flex gap-10" >
+                <div className="w-full h-[22em] mt-4 rounded-xl flex flex-col lg:flex lg:flex-row gap-10 min-h-[30em] sm:overflow-x-auto overflow-y-hidden" >
                     <img src={ selectedList.length === 0 ? "No data" : selectedList[0].images.picture_url} alt="" className="h-[100%] rounded-xl"/>
                     <p className="text-lg">{ selectedList.length === 0 ? "No data" : selectedList[0].description}</p>
                 </div>  

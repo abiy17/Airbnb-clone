@@ -16,6 +16,8 @@ app.post(`/searching`,mongo.Searching)
 
 app.post(`/createProfile/:id`,upload.single(`images`),mongo.createProfile)
 
+app.put(`/updateProfile/:id`,mongo.updateProfile)
+
 app.post(`/signup`,mongo.createUser)
 
 app.post(`/AddWishlists/:id`,mongo.AddWishlists)

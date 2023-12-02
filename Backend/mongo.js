@@ -4,7 +4,10 @@ const UserModel = require(`./mongoose-Schema/userSchema`)
 const jwt = require(`jsonwebtoken`)
 const cloudinary = require(`./utils/cloudinary`)
 const stripe = require("stripe")("sk_test_51O6ARmDwZfua1AHPDSJUDRZZC1wZAqHYm39d7dwhkjxZFbW6kKQkWypuHn4kvugQ8IA6Hwk7yR2laexuglYmjRTy009pptrfhy")
-mongoose.connect('mongodb+srv://chuna:kdb17aby@cluster0.17tjqjc.mongodb.net/');
+mongoose.connect('mongodb+srv://chuna:kdb17aby@cluster0.17tjqjc.mongodb.net/?retryWrites=true&w=majority').then((res)=>{
+    console.log("succesfully connected!")
+});
+// mongoose.connect('mongodb+srv://chuna:kdb17aby@cluster0.17tjqjc.mongodb.net/');
 const express = require("express")
 const app = express()
 app.use(express.static(`public`))
@@ -37,6 +40,40 @@ const createProfile = async (req,res,next) =>{
     }
     catch(err){
         res.status(400).json({ msge: err })
+    }
+}
+
+const updateProfile = async (req,res) =>{
+    const { id } = req.params
+    const { school,placeOfLiving,Obsession,skil,language,song,BiographyTitle,funFact } = req.body
+    try {
+        const user = await UserModel.findByIdAndUpdate(
+            id,
+            {
+                $set: {
+                    [`Profile.${0}`]: {
+                        school,
+                        placeOfLiving,
+                        Obsession,
+                        skil,
+                        language,
+                        song,
+                        BiographyTitle,
+                        funFact,
+                    },
+                },
+            },
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(400).send("Error: User not found");
+        }
+
+        return res.status(200).json({ mssge: "Profile Updated Successfully!" });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 }
 
@@ -151,3 +188,4 @@ exports.Searching = Searching;
 exports.AddWishlists = AddWishlists;
 exports.getUsers = getUsers;
 exports.CreateSession = CreateSession;
+exports.updateProfile = updateProfile;
