@@ -52,6 +52,11 @@ export function App() {
     axios.get(`http://localhost:5000/users`).then(res =>{
       setuserData(res.data.user)
     })
+    const selectedItem = JSON.parse(localStorage.getItem(`selectedItem`))
+    if(selectedItem){
+      setselectedList(selectedItem)
+    }
+    console.log(selectedItem)
   },[])
   const Logout =()=>{
     localStorage.removeItem(`user`)
@@ -77,7 +82,7 @@ export function App() {
             <Route path='/profile' element={<ProfilePage />}/>
             <Route path='/profile/createProfile' element={<CreateProfile />}/>
             <Route path='/DetailedList' element={<DetailedList />}/>
-            <Route path='/wishlists' element={<WishList />}/>
+            <Route path='/wishlists' element={<WishList />}/> 
           </Routes>
       </BrowserRouter>
       </MyContext.Provider>

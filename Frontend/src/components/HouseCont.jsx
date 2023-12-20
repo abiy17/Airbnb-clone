@@ -20,6 +20,8 @@ function HouseCont(props) {
         let filteredArray = listing.filter( item => item.host.host_id === Id )
         console.log(filteredArray[0].name,user.user.data.user._id)
         setselectedList(filteredArray)
+        localStorage.setItem(`selectedItem`,JSON.stringify(filteredArray) )
+        console.log(selectedList[0])
       }
     let fee = props.price.$numberDecimal * 0.65
     return ( 
