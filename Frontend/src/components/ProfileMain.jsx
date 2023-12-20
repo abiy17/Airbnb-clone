@@ -18,10 +18,10 @@ function ProfileMain() {
                     <div className="flex gap-2 h-full m-auto">
                         <div className="ml-12">
                         { currentUser === null ? <div className=""></div> : currentUser.Profile.length === 0 ? <div className="w-28 mt-5 h-28 rounded-full bg-stone-800">
-                            <p className="text-center text-white font-bold text-6xl pt-6">{user.user === null ? <p>loading..</p> : user.user.data.user.username.charAt(0)}</p>
+                            <p className="text-center text-white font-bold text-6xl pt-6">{user.user === null ? <p>loading..</p> : user.user.username.charAt(0)}</p>
                         </div> : <img src={ currentUser === undefined ? "" : currentUser.Profile[0].image } alt="" className="w-32 mt-10 ml-3 h-20 rounded-full"/> }
                         <div className="ml-5 mt-3">
-                            <p className="font-bold font-sans text-2xl">{user.user === null ? <p>loading..</p> : user.user.data.user.username.slice(0,5)}</p>
+                            <p className="font-bold font-sans text-2xl">{user.user === null ? <p>loading..</p> : user.user.username.slice(0,5)}</p>
                             <p className="font-sans">Guest</p>
                         </div>
                         </div>
@@ -35,7 +35,7 @@ function ProfileMain() {
                 </div>
                 <div className="w-[20.7em] relative left-[-1em] border-stone-300 mt-4 h-[450px] border-[1px] rounded-xl flex flex-col">
                     <div className="w-11/12 h-[10em] m-auto">
-                        <p className="font-sans font-semibold ml-3 w-11/12 text-[1.5em]">{user.user === null ? <p>Loading..</p> : user.user.data.user.username}'s' confirmed information</p>
+                        <p className="font-sans font-semibold ml-3 w-11/12 text-[1.5em]">{user.user === null ? <p>Loading..</p> : user.user.username}'s' confirmed information</p>
                         <div className="mt-4 ml-4">
                             <p className="flex items-center gap-4">
                                 <img src={Correct} alt="" className="w-8"/>
@@ -45,13 +45,17 @@ function ProfileMain() {
                                 <img src={Correct} alt="" className="w-8"/>
                                 Phone number
                             </p>
+                            <p className={ user.user.isVerified ? "flex items-center gap-4" : "hidden" }>
+                                <img src={Correct} alt="" className="w-8"/>
+                                user Verified
+                            </p>
                         </div>
                     </div>
-                    <p className="text-stone-300 ml-10">-----------------------------------------------------</p>
-                    <div className="w-11/12 h-[13em] m-auto">
+                    <p className="text-stone-300 ml-10">-----------------------------------------</p>
+                    <div className={ user.user.isVerified ? "hidden" : "w-11/12 h-[13em] m-auto"}>
                         <p className="font-sans font-semibold ml-3 w-11/12 text-[1.5em]">Verify your identity</p>
                         <p className="ml-4 mt-10 w-11/12">Before you book or Host on Airbnb, you’ll need to complete this step.</p>
-                        <button className="ml-4 border-[1px] rounded-lg p-3 mt-10 border-black font-sans font-medium hover:bg-stone-100 duration-300 w-5/12">Get Verified</button>
+                        <NavLink to="/getVerified"><button className="ml-4 border-[1px] rounded-lg p-3 mt-10 border-black font-sans font-medium hover:bg-stone-100 duration-300 w-5/12">Get Verified</button></NavLink>
                     </div>
                 </div>
             </div>
@@ -64,7 +68,7 @@ function ProfileMain() {
                 </div>
             </div> : <div className="w-6/12 relative left-[-9em] h-[50em]">
                 <div className="mt-10 h-[13%] flex flex-col gap-4">
-                    <p className="font-bold text-2xl">About {user.user === null ? <p>loading..</p> :  user.user.data.user.username }</p>
+                    <p className="font-bold text-2xl">About {user.user === null ? <p>loading..</p> :  user.user.username }</p>
                     <NavLink to="/profile/createProfile"><button className=" p-2 rounded-xl w-28 text-[13px] hover:bg-stone-100 duration-700 border-[1px] border-black">Edit profile</button></NavLink>
                 </div>
                 <div className="mt-10 h-[65%] flex flex-col gap-4">

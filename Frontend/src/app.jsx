@@ -10,6 +10,7 @@ import CreateProfile from './pages/CreateProfile'
 import DetailedList from './pages/DetailedList'
 import WishList from './pages/Wishlist'
 import { Result } from 'antd'
+import GetVerified from './pages/GetVerified'
 export function App() {
   const [ user,setuser ] = useState({
     user: null
@@ -35,7 +36,7 @@ export function App() {
     filteredUser = null
     setcurrentUser(null)
   }else{
-    filteredUser = userData.find(item => item._id === user.user.data.user._id)
+    filteredUser = userData.find(item => item._id === user.user._id)
     setcurrentUser(filteredUser)
   }
   useEffect(()=>{
@@ -80,6 +81,7 @@ export function App() {
           <Routes>
             <Route path='/' element={<LP />}/>
             <Route path='/profile' element={<ProfilePage />}/>
+            <Route path='/getVerified' element={<GetVerified />}/>
             <Route path='/profile/createProfile' element={<CreateProfile />}/>
             <Route path='/DetailedList' element={<DetailedList />}/>
             <Route path='/wishlists' element={<WishList />}/> 

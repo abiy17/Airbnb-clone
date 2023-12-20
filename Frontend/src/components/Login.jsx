@@ -15,9 +15,9 @@ function Login() {
     const HandleSubmit =(e)=>{
         e.preventDefault();
         axios.post(`http://localhost:5000/login`,{ email,password }).then(res => {
-            localStorage.setItem(`user`,JSON.stringify(res))
+            localStorage.setItem(`user`,JSON.stringify(res.data.user))
             setuser({
-                user: res
+                user: res.data.user
             })
             console.log(res)
             setloginModal(false)

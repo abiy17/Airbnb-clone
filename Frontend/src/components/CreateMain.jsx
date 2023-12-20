@@ -8,7 +8,6 @@ import MyContext from "../context";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-import swal from "sweetalert"
 function CreateMain() {
     const { currentUser,setcurrentUser } = useContext(MyContext)
     const [ UserInfo,setUserInfo ] = useState(currentUser.Profile[0])
@@ -127,7 +126,6 @@ function CreateMain() {
                     theme: "light",
                     });
                 setTimeout(() => {
-                    Navigate(`/`)
                     window.location.reload()
                 }, 3000);
             }

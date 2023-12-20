@@ -22,9 +22,9 @@ function Signup() {
         if( validator.isEmail(email) && validator.isStrongPassword(password) && countryCode !== ""){
             setvalidEmail(true)
             axios.post(`http://localhost:5000/signup`,{ username,email,password,phoneNumber: ValidPhone }).then(res => {
-                localStorage.setItem(`user`,JSON.stringify(res))
+                localStorage.setItem(`user`,JSON.stringify(res.data.user))
                 setuser({
-                    user: res
+                    user: res.data.user
                 })
                 console.log(user)
                 seterrorEmail(false)

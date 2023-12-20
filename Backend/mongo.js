@@ -180,6 +180,26 @@ const CreateSession = async ( req,res,next )=>{
       }
 }
 
+const VerifyUser =async (req,res)=>{
+    const { id } = req.params
+    try{
+        let uploadFile = await cloudinary.v2.uploader.upload(req.file.path)
+        let user = await UserModel.findById(id).exec()
+        if(user){
+            user.IdFile.push(uploadFile.secure_url)
+            user.isVerified = true
+            await user.save();
+            res.status(200).json(user)
+        }
+        else{
+            res.send(`user Not found!`)
+        }
+        
+    }catch(err){
+        res.status(400).json({ mssge: "error" })
+    }
+}
+
 exports.createUser = createUser;
 exports.createProfile = createProfile;
 exports.loggingIN = loggingIN;
@@ -189,3 +209,4 @@ exports.AddWishlists = AddWishlists;
 exports.getUsers = getUsers;
 exports.CreateSession = CreateSession;
 exports.updateProfile = updateProfile;
+exports.VerifyUser = VerifyUser

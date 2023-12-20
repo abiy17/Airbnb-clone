@@ -16,6 +16,8 @@ app.post(`/searching`,mongo.Searching)
 
 app.post(`/createProfile/:id`,upload.single(`images`),mongo.createProfile)
 
+app.post(`/verifyUser/:id`,upload.single(`GovermentIdFile`),mongo.VerifyUser)
+
 app.put(`/updateProfile/:id`,mongo.updateProfile)
 
 app.post(`/signup`,mongo.createUser)

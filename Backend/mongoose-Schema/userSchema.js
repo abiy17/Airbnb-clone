@@ -5,6 +5,8 @@ const UserSchema = new mongoose.Schema({
     email: { type:String, required:true,unique:true },
     password: { type:String,required:true },
     phoneNumber: { type:Number,require:true },
+    isVerified: { type:Boolean,require:true },
+    IdFile: [],
     Wishlists: [],
     Profile: [],
 })

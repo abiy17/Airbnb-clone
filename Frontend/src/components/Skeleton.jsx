@@ -4,12 +4,12 @@ function Skeleton() {
     return (
         <div className="z-0">
             <div className="w-[99%] h-[18.4em] bg-white">
-                <Skeletonn className='w-auto sm:w-[99%] md:w-[80%] h-full'/>
+                <Skeletonn className='w-[17em] sm:w-[99%] h-full'/>
             </div>
             <div className="">
-                <Skeletonn className='w-[20%] sm:w-[90%] md:w-[80%] mt-5'/>
-                <Skeletonn className='w-[10%] sm:w-[90%] md:w-[80%] mt-2'/>
-                <Skeletonn className='w-[10%] sm:w-[90%] md:w-[80%] mt-2'/>
+                <Skeletonn className='w-[20%] sm:w-[90%] mt-5'/>
+                <Skeletonn className='w-[10%] sm:w-[70%] mt-2'/>
+                <Skeletonn className='w-[10%] sm:w-[70%] mt-2'/>
             </div>
         </div>
       );

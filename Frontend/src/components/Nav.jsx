@@ -33,7 +33,7 @@ function Nav() {
             </div>
             <div className="sm:w-[59%] flex items-center">
                 <input onChange={(e)=>setcountry(e.target.value)} placeholder="Search By Country" type="text" className="pl-5 rounded-3xl sm:pl-10 w-[99%] h-12 border-[1px] shadow-md outline-1 outline-red-400" />
-                <div className="w-10 sm:w-20 h-8 hover:opacity-70 duration-300 relative left-[-2.5em] flex justify-center items-center rounded-full bg-red-500 text-white">
+                <div className="p-2 hover:opacity-70 duration-300 relative left-[-2.5em] flex justify-center items-center rounded-full bg-red-500 text-white">
                     <FaSearch onClick={Searching} className=" cursor-pointer"/>
                 </div>
                <a href="https://www.airbnb.com/host/homes" className="w-[99%] hidden text-sm duration-300 h-10 hover:bg-stone-50 cursor-pointer font-sans relative sm:flex justify-center items-center rounded-3xl">
@@ -61,7 +61,7 @@ function Nav() {
                 </div>
             </div> : <div className="flex flex-col relative left-[-2em]">
             <div onClick={()=>{setProfilemodal(!Profilemodal)}}  className="flex gap-3 hover:shadow-lg duration-200 rounded-3xl p-3 h-11 cursor-pointer border-[1px]  justify-center items-center">
-                <p  className="font-bold font-sans sm:block hidden">{user.user.data.user.username}</p>
+                <p  className="font-bold font-sans sm:block hidden">{user.user.username}</p>
                 { currentUser === undefined || currentUser.Profile.length === 0 ? <FaUserCircle className="text-2xl"/> :   <img src={ currentUser.Profile[0].image } alt="" className="w-8 h-8 rounded-full"/>}
                 </div>
             <div data-aos="fade-right" className={Profilemodal ? "w-[12em] left-[-12em] sm:left-0 bg-white profilemodal absolute top-16 float-right rounded-lg shadow-xl h-[20em] z-50 border-[1px]" : "hidden"}>
