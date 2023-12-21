@@ -18,12 +18,11 @@ function HouseCont(props) {
     }   
     const HandleFilter=(Id)=>{
         let filteredArray = listing.filter( item => item.host.host_id === Id )
-        console.log(filteredArray[0].name,user.user.data.user._id)
         setselectedList(filteredArray)
         localStorage.setItem(`selectedItem`,JSON.stringify(filteredArray) )
-        console.log(selectedList[0])
+        console.log(selectedList)
       }
-    let fee = props.price.$numberDecimal * 0.65
+    let fee = props.price.$numberDecimal + 50
     return ( 
         <div onClick={()=>HandleFilter(props.host.host_id)} className="mt-2 cursor-pointer">
             <NavLink to="DetailedList">
@@ -39,7 +38,7 @@ function HouseCont(props) {
                         </div>
                         <p className="text-stone-500">Hosted By {props.host.host_name}</p>
                         <p className="text-stone-500">Duration: {props.minimum_nights} nights</p>
-                        <p className=" font-semibold">${filterTax ? props.price.$numberDecimal + " total before taxes" : fee.toFixed(2) + " nights"}</p>
+                        <p className=" font-semibold">${filterTax ? fee + " total after taxes" : props.price.$numberDecimal + " nights"}</p>
                     </div>
                 </div>
             </NavLink>

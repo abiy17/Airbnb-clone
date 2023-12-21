@@ -49,6 +49,11 @@ function ProfileMain() {
                                 <img src={Correct} alt="" className="w-8"/>
                                 user Verified
                             </p>
+                            <NavLink to="/hosting">
+                            <div className={ user.user.isVerified ? "cursor-pointer w-2/3 hover:opacity-90 flex justify-center items-center mt-6 bg-pink-600 text-white font-semibold duration-300 p-3 rounded-3xl font-sans": "hidden"}>
+                                <p>Swich to Hosting</p>
+                            </div>
+                            </NavLink>
                         </div>
                     </div>
                     <p className="text-stone-300 ml-10">-----------------------------------------</p>

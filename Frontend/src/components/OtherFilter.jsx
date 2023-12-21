@@ -10,7 +10,7 @@ function OtherFilter() {
                     <div className="w-[1px] sm:block hidden bg-stone-300 h-7"></div>
                 </div>
                 <div className="w-[90%] text-sm sm:pl-4 sm:flex hidden gap-[10em] items-center">
-                    <p className="font-sans text-stone-500 text-center ">Includes all fees, before taxes</p>
+                    <p className="font-sans text-stone-500 text-center ">Includes all fees, after taxes</p>
                 </div>
                 <div className="w-[20%]">
                     <Switch onClick={()=>{setfilterTax(!filterTax)}} className="bg-stone-400  mt-4"/>

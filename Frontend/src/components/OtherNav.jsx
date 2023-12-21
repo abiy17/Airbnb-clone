@@ -12,19 +12,15 @@ function OtherNav() {
     const Navigate = useNavigate()
     console.log(user)
     return ( 
-            <div className="flex gap-[5em] justify-around items-center w-full h-[5em] shadow-sm sticky top-0 bg-white z-10">
-                <div onClick={()=>Navigate(-1)} className="text-red-500 flex gap-1 items-center cursor-pointer">
+            <div className="flex justify-between items-center w-full h-[5em] shadow-sm sticky top-0 bg-white z-10">
+                <div onClick={()=>Navigate(-1)} className="text-red-500 ml-20 flex gap-1 items-center cursor-pointer">
                     <FaAirbnb className="text-4xl"/>
                     <p className="font-bold text-2xl">airbnb</p>
-                </div>
-                <div className="relative lg:left-[17em] cursor-pointer hover:bg-stone-50 duration-300 p-3 rounded-3xl font-sans">
-                    <p>Swich to Hosting</p>
                 </div>
                 <div className="flex flex-col relative left-[-2em]">
             { user.user === null ? "" : <div onClick={()=>{
                 setProfilemodal(!Profilemodal)
-                console.log(Profilemodal)
-                }}  className="flex gap-3 hover:shadow-lg duration-200 rounded-3xl p-3 h-11 cursor-pointer border-[1px]  justify-center items-center">
+                }}  className="flex relative left-[-2em] gap-3 hover:shadow-lg duration-200 rounded-3xl p-3 h-11 cursor-pointer border-[1px]  justify-center items-center">
                 <p  className="font-bold font-sans">{user.user.username}</p>
                 { currentUser === undefined || currentUser.Profile.length === 0 ? <FaUserCircle className="text-2xl"/> :   <img src={ currentUser.Profile[0].image } alt="" className="w-8 h-8 rounded-full"/>}
             </div>}

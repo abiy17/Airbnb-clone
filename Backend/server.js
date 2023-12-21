@@ -20,6 +20,8 @@ app.post(`/verifyUser/:id`,upload.single(`GovermentIdFile`),mongo.VerifyUser)
 
 app.put(`/updateProfile/:id`,mongo.updateProfile)
 
+app.post(`/host/:id`,upload.single(`Houseimage`),mongo.host)
+
 app.post(`/signup`,mongo.createUser)
 
 app.post(`/AddWishlists/:id`,mongo.AddWishlists)

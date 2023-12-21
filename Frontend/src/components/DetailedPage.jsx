@@ -32,7 +32,7 @@ function DetailedPage() {
             redirect: 'follow'
             };
 
-            fetch(`http://localhost:5000/AddWishlists/${user.user.data.user._id}`, requestOptions)
+            fetch(`http://localhost:5000/AddWishlists/${user.user._id}`, requestOptions)
             .then(response => {
                 response.json()
                 if( response.status === 200 ){
@@ -170,8 +170,8 @@ function DetailedPage() {
                                 <p className="text-center text-stone-800 mb-2">You won't be charged yet</p>
                                 <div className="flex flex-col">
                                     <div className="w-11/12 h-7 m-auto">
-                                        <p className="underline flex gap-2">$ {selectedList.length === 0 ? "No data" :selectedList[0].price.$numberDecimal} X {selectedList.length === 0 ? "No data" : selectedList[0].minimum_nights} min nights</p>
-                                        <div className="float-right relative top-[-1.2em]"><p>${ TotalFee }</p></div>
+                                        <p className="underline flex gap-2">$ {selectedList.length === 0 ? "No data" :selectedList[0].price.$numberDecimal} X {selectedList.length === 0 ? "No data" : selectedList[0].minimum_nights === null || selectedList[0].minimum_nights === undefined ? 1 : selectedList[0].minimum_nights} min nights</p>
+                                        <div className="float-right relative top-[-1.2em]"><p>${ Fee }</p></div>
                                     </div>
                                     <div className="w-11/12 h-16 m-auto mt-2">
                                         <p className="underline">Airbnb Service fee</p>
@@ -197,7 +197,7 @@ function DetailedPage() {
                  { ViewReview ? <p className="mt-3 cursor-pointer underline" onClick={()=>setViewReview(false)}>Hide reviews</p> : <p onClick={()=>setViewReview(true)} className="mt-3 cursor-pointer underline">View Reviews</p> }
                 <div className={ ViewReview ? "w-full h-full overflow-clip grid grid-cols-2": "w-full h-2 overflow-clip grid grid-cols-2" }>
                      { selectedList.length === 0 ? "No data" : selectedList[0].reviews.length === 0 ? "No Reviews" : selectedList[0].reviews.map(item =>{
-                        return <div className="w-11/12 h-56 shadow-lg rounded-lg overflow-clip">
+                        return <div className="p-2 shadow-lg rounded-lg overflow-clip">
                                  <div className="flex gap-2 mt-10 ml-4 relative left-3 font-bold">
                                         <FaUser />
                                         <p>{ item.reviewer_name }</p>

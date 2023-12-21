@@ -11,6 +11,7 @@ import DetailedList from './pages/DetailedList'
 import WishList from './pages/Wishlist'
 import { Result } from 'antd'
 import GetVerified from './pages/GetVerified'
+import HostingPage from './pages/HostingPage'
 export function App() {
   const [ user,setuser ] = useState({
     user: null
@@ -83,6 +84,7 @@ export function App() {
             <Route path='/profile' element={<ProfilePage />}/>
             <Route path='/getVerified' element={<GetVerified />}/>
             <Route path='/profile/createProfile' element={<CreateProfile />}/>
+            <Route path='/hosting' element={<HostingPage />}/>
             <Route path='/DetailedList' element={<DetailedList />}/>
             <Route path='/wishlists' element={<WishList />}/> 
           </Routes>

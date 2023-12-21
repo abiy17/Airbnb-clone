@@ -200,6 +200,48 @@ const VerifyUser =async (req,res)=>{
     }
 }
 
+const host = async (req,res)=>{
+    const { hostId } = req.params
+    let imageUrl = await cloudinary.v2.uploader.upload(req.file.path)
+    const { listOfAmenties,name,description,street,$numberDecimalGuest,bedrooms,host_thumbnail_url,host_name,host_response_time,host_about,numberDecimalPrice } = req.body
+    const newHouseData = {
+        name,
+        images: {
+            picture_url: imageUrl.secure_url
+        },
+        description,
+        address:{
+            street
+        },
+        guests_included:{
+            $numberDecimal: $numberDecimalGuest
+        },
+        bedrooms,
+        reviews: [
+    
+        ],
+        host: {
+            host_thumbnail_url,
+            host_name,
+            host_response_time,
+            host_about,
+            hostId
+        },
+        amenities: listOfAmenties,
+        price: {
+            $numberDecimal: numberDecimalPrice
+        }
+    }
+    try{
+        listing = await listingsModel.create(newHouseData)
+        await listing.save()
+        res.send("sucess!")
+    }
+    catch(err){
+        res.status(400).json({ msge: err })
+    }
+}
+
 exports.createUser = createUser;
 exports.createProfile = createProfile;
 exports.loggingIN = loggingIN;
@@ -210,3 +252,4 @@ exports.getUsers = getUsers;
 exports.CreateSession = CreateSession;
 exports.updateProfile = updateProfile;
 exports.VerifyUser = VerifyUser
+exports.host = host
