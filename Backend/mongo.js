@@ -45,6 +45,7 @@ const createProfile = async (req,res,next) =>{
 
 const updateProfile = async (req,res) =>{
     const { id } = req.params
+    const imageUpdate = await cloudinary.v2.uploader.upload(req.file.path)
     const { school,placeOfLiving,Obsession,skil,language,song,BiographyTitle,funFact } = req.body
     try {
         const user = await UserModel.findByIdAndUpdate(
@@ -52,6 +53,7 @@ const updateProfile = async (req,res) =>{
             {
                 $set: {
                     [`Profile.${0}`]: {
+                        image: imageUpdate.secure_url,
                         school,
                         placeOfLiving,
                         Obsession,

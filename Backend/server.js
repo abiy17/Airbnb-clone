@@ -18,7 +18,7 @@ app.post(`/createProfile/:id`,upload.single(`images`),mongo.createProfile)
 
 app.post(`/verifyUser/:id`,upload.single(`GovermentIdFile`),mongo.VerifyUser)
 
-app.put(`/updateProfile/:id`,mongo.updateProfile)
+app.put(`/updateProfile/:id`,upload.single(`imageUpdate`),mongo.updateProfile)
 
 app.post(`/host/:id`,upload.single(`Houseimage`),mongo.host)
 

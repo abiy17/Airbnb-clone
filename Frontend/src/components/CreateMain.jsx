@@ -89,25 +89,35 @@ function CreateMain() {
     }
 
     const Edit=()=>{
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        // var myHeaders = new Headers();
+        // myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({
-        "school": UserInfo.school,
-        "placeOfLiving": UserInfo.placeOfLiving,
-        "Obsession": UserInfo.Obsession,
-        "skil": UserInfo.skil,
-        "language": UserInfo.language,
-        "song": UserInfo.song,
-        "BiographyTitle": UserInfo.BiographyTitle,
-        "funFact": UserInfo.funFact
-        });
+        // var raw = JSON.stringify({
+        // "school": UserInfo.school,
+        // "placeOfLiving": UserInfo.placeOfLiving,
+        // "Obsession": UserInfo.Obsession,
+        // "skil": UserInfo.skil,
+        // "language": UserInfo.language,
+        // "song": UserInfo.song,
+        // "BiographyTitle": UserInfo.BiographyTitle,
+        // "funFact": UserInfo.funFact
+        // });
+
+        var formdata = new FormData();
+        formdata.append("imageUpdate", image[0]);
+        formdata.append("school", UserInfo.school);
+        formdata.append("placeOfLiving", UserInfo.placeOfLiving);
+        formdata.append("Obsession", UserInfo.Obsession);
+        formdata.append("skil", UserInfo.skil);
+        formdata.append("language", UserInfo.language);
+        formdata.append("song", UserInfo.song);
+        formdata.append("BiographyTitle", UserInfo.BiographyTitle);
+        formdata.append("funFact", UserInfo.funFact);
         
 
         var requestOptions = {
         method: 'PUT',
-        headers: myHeaders,
-        body: raw,
+        body: formdata,
         redirect: 'follow'
         };
 
@@ -126,7 +136,7 @@ function CreateMain() {
                     theme: "light",
                     });
                 setTimeout(() => {
-                    window.location.reload()
+                    Navigate(-1)
                 }, 3000);
             }
             else if( response.status === 400 ){
@@ -175,7 +185,7 @@ function CreateMain() {
             <div className="w-5/12 h-[70vh]">
             <div className="ml-24">
                 <div className="w-48 mt-10 ml-5 h-48 rounded-full bg-stone-800 flex justify-center items-center ">
-                { currentUser.Profile.length === 0 ? <p></p> : <img src={UserInfo.image} alt="" className="rounded-full"/>}
+                { currentUser.Profile.length === 0 ? <p></p> : <img src={UserInfo.image} alt="" className="rounded-full w-full h-full"/>}
                 </div>
                 <label className="w-24 h-10 rounded-full bg-white z-20 flex gap-3 font-semibold shadow-xl justify-center items-center cursor-pointer relative top-[-1em] left-16">
                 <input onChange={(e)=>{ setimage(e.target.files) }} type="file" accept="image/png,image/jpeg,image/JPG" hidden/>

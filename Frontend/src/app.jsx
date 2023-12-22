@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'preact/hooks'
+import { lazy, Suspense } from "react";
 import './app.css'
-import LP from './pages/LP'
 import MyContext from './context'
 import axios from "axios"
 import { BrowserRouter,Route,Routes } from "react-router-dom"
-import ProfilePage from './pages/ProfilePage'
 import Swal from "sweetalert2"
-import CreateProfile from './pages/CreateProfile'
-import DetailedList from './pages/DetailedList'
-import WishList from './pages/Wishlist'
-import { Result } from 'antd'
-import GetVerified from './pages/GetVerified'
-import HostingPage from './pages/HostingPage'
+const LP = lazy(() => import('./pages/LP'))
+const ProfilePage = lazy(() => import('./pages/ProfilePage'))
+const CreateProfile = lazy(() => import("./pages/CreateProfile"))
+const DetailedList = lazy(() => import('./pages/DetailedList'))
+const WishList = lazy(() => import('./pages/Wishlist'))
+const GetVerified = lazy(() => import('./pages/GetVerified'))
+const HostingPage = lazy(() => import('./pages/HostingPage'))
+import LoadingSpinner from "./components/LoadingSpinner"
 export function App() {
   const [ user,setuser ] = useState({
     user: null
@@ -51,15 +52,19 @@ export function App() {
         user: UserInfo
       })
     }
-    axios.get(`http://localhost:5000/users`).then(res =>{
-      setuserData(res.data.user)
-    })
+    
     const selectedItem = JSON.parse(localStorage.getItem(`selectedItem`))
     if(selectedItem){
       setselectedList(selectedItem)
     }
     console.log(selectedItem)
-  },[])
+  },[listing])
+
+  useEffect(()=>{
+    axios.get(`http://localhost:5000/users`).then(res =>{
+      setuserData(res.data.user)
+    })
+  },[userData])
   const Logout =()=>{
     localStorage.removeItem(`user`)
     setuser({
@@ -79,6 +84,11 @@ export function App() {
         loginModal,setloginModal,listing,setlisting,signUpModal,setsignUpModal,user,setuser,setphoneNumber,countryCode,setcountryCode
          }}>
       <BrowserRouter>
+        <Suspense fallback={
+          <div className='flex flex-col items-center justify-center h-[100svh]'>
+              <LoadingSpinner />
+          </div>
+        }>
           <Routes>
             <Route path='/' element={<LP />}/>
             <Route path='/profile' element={<ProfilePage />}/>
@@ -88,6 +98,7 @@ export function App() {
             <Route path='/DetailedList' element={<DetailedList />}/>
             <Route path='/wishlists' element={<WishList />}/> 
           </Routes>
+        </Suspense>
       </BrowserRouter>
       </MyContext.Provider>
     </>
