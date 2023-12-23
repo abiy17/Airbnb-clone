@@ -13,6 +13,7 @@ const WishList = lazy(() => import('./pages/Wishlist'))
 const GetVerified = lazy(() => import('./pages/GetVerified'))
 const HostingPage = lazy(() => import('./pages/HostingPage'))
 import LoadingSpinner from "./components/LoadingSpinner"
+import Account from './pages/Account';
 export function App() {
   const [ user,setuser ] = useState({
     user: null
@@ -97,6 +98,7 @@ export function App() {
             <Route path='/hosting' element={<HostingPage />}/>
             <Route path='/DetailedList' element={<DetailedList />}/>
             <Route path='/wishlists' element={<WishList />}/> 
+            <Route path='/Account' element={<Account />}/>
           </Routes>
         </Suspense>
       </BrowserRouter>

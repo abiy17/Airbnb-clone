@@ -3,7 +3,7 @@ import MyContext from "../context";
 import { useContext,useEffect } from "react";
 import "aos/dist/aos.css"
 import Aos from "aos";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 function OtherNav() {
     const { Profilemodal,setProfilemodal,user,setuser,Logout,currentUser } = useContext(MyContext)
     useEffect(()=>{
@@ -24,12 +24,12 @@ function OtherNav() {
                 <p  className="font-bold font-sans">{user.user.username}</p>
                 { currentUser === undefined || currentUser.Profile.length === 0 ? <FaUserCircle className="text-2xl"/> :   <img src={ currentUser.Profile[0].image } alt="" className="w-8 h-8 rounded-full"/>}
             </div>}
-                <div data-aos="fade-right" className={Profilemodal ? "w-[12em] bg-white profilemodal absolute top-16 float-right rounded-lg shadow-xl h-[18em] z-50 border-[1px]" : "hidden"}>
+                <div data-aos="fade-right" className={Profilemodal ? "w-[12em] bg-white profilemodal absolute top-16 left-[-4em] float-right rounded-lg shadow-xl h-[20em] z-50 border-[1px]" : "hidden"}>
                             <ul className="">
                                 <li onClick={()=>Navigate(`/profile`)}  className="w-full cursor-pointer h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">Profile</li>
                                 <li onClick={()=>Navigate(`/wishlists`)}  className="w-full cursor-pointer h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">WishLists</li>
                                 <p className="text-center text-stone-300">-------------------------</p>
-                                <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Account</li>
+                                <NavLink to="/account"><li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Account</li></NavLink>
                                 <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Manage Listing</li>
                                 <p className="text-center text-stone-300">------------------------</p>
                                 <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-4 duration-300"><FaQuestion />Help Center</li>

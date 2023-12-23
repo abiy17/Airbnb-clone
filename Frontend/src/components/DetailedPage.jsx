@@ -37,10 +37,6 @@ function DetailedPage() {
                 response.json()
                 if( response.status === 200 ){
                     swal("Sucessfully added to Wishlists","Refresh the Page to see changes",'success')
-                    Navigate(-1)
-                    setTimeout(() => {
-                        window.location.reload()
-                    }, 2000);
                 }
                 else if( response.status === 400 ){
                     swal("already added to wishlist","try other items","error")

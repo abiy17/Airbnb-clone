@@ -11,7 +11,6 @@ import axios from "axios";
 function Nav() {
     const { Navigate } = useNavigate();
     const { currentUser,setLoading,listing,setlisting,country,setcountry,Logout,setsignUpModal,modal,setmodal,loginModal,setloginModal,user,setuser,Profilemodal,setProfilemodal } = useContext(MyContext)
-    console.log(user)
     useEffect(()=>{
         Aos.init();
     },[Profilemodal])
@@ -70,7 +69,7 @@ function Nav() {
                             <NavLink onClick={()=>{setProfilemodal(false)}}to="/profile" ><li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">Profile</li></NavLink>
                             <NavLink to="/wishlists"><li  className="w-full cursor-pointer font-semibold h-10 hover:bg-stone-100 pl-5 pt-2 mt-2 duration-300">WishLists</li></NavLink>
                             <p className="text-center text-stone-300">-----------------------</p>
-                            <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Account</li>
+                            <NavLink to="/Account"><li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Account</li></NavLink>
                             <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-2 duration-300">Manage Listing</li>
                             <p className="text-center text-stone-300">-----------------------</p>
                             <li className="w-full cursor-pointer flex gap-2 h-10 hover:bg-stone-100 pl-5 pt-4 duration-300"><FaQuestion />Help Center</li>

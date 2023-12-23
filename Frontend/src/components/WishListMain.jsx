@@ -17,7 +17,7 @@ function WishListMain() {
             <div className="w-11/12 min-h-[5em] m-auto mt-5">
                 <p className="font-bold text-2xl ml-20 mt-3">Wishlists</p>
             </div>
-            <div className="min-h-[40em] w-11/12 m-auto shadow-md grid grid-cols-2 gap-x-5 gap-y-1 rounded-3xl pl-10">
+            <div className="min-h-[40em] w-11/12 m-auto shadow-md grid gird-cols-1 sm:grid-cols-2 gap-x-5 gap-y-14 rounded-3xl pl-10">
                 {currentUser === null ? <p>No Info</p> : currentUser.Wishlists.length === 0 ? <div className="w-11/12 h-20 ml-10">
                     <p className="text-xl font-bold">There is No Wishlists here!</p>
                     <button onClick={()=>Navigate(-1)} className="w-11/12 hover:scale-90 duration-300 rounded-xl ml-3 mt-6 h-12 bg-pink-600 text-white font-semibold">Home page</button>

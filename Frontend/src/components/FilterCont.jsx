@@ -32,7 +32,7 @@ function FilterCont() {
                 <p className="text-sm">Arctic</p>
             </div>
             </div>
-            <div className="flex ml-10 z-30 md:relative md:left-[-10em] cursor-pointer hover:text-red-500 duration-300 border-[1px] rounded-2xl h-[40%] mt-4 w-[19%] sm:w-[10%]  p-2 justify-center items-center ">
+            <div className="flex ml-10 z-50 bg-white md:relative md:left-[-10em] cursor-pointer hover:text-red-500 duration-300 border-[1px] rounded-2xl h-[40%] mt-4 w-[19%] sm:w-[10%]  p-2 justify-center items-center ">
                 <BsFilterRight className="text-xl"/>
                 <p className="font-semibold font-mono">Filter</p>
             </div>

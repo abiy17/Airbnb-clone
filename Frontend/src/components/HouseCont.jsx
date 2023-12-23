@@ -17,14 +17,14 @@ function HouseCont(props) {
         
     }   
     const HandleFilter=(Id)=>{
-        let filteredArray = listing.filter( item => item.host.host_id === Id )
+        let filteredArray = listing.filter( item => item.name === Id )
         setselectedList(filteredArray)
         localStorage.setItem(`selectedItem`,JSON.stringify(filteredArray) )
         console.log(selectedList)
       }
     let fee = props.price.$numberDecimal + 50
     return ( 
-        <div onClick={()=>HandleFilter(props.host.host_id)} className="mt-2 cursor-pointer">
+        <div onClick={()=>HandleFilter(props.name)} className="mt-2 cursor-pointer">
             <NavLink to="DetailedList">
                 <div  className="w-[99%] h-[24.4em] bg-white">
                     <div className="w-full rounded-xl h-[75%]">

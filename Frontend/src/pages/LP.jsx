@@ -9,9 +9,8 @@ import MyContext from "../context";
 
 function LP() {
     const { userId } = useContext(MyContext)
-    console.log(userId)
     return ( 
-        <div className="">
+        <div className=" overflow-x-hidden">
             <Nav />
             <FilterCont />
             <OtherFilter />
