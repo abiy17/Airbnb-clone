@@ -244,6 +244,23 @@ const host = async (req,res)=>{
     }
 }
 
+const EditPersonalInfo = async (req,res)=>{
+    const { id } = req.params
+    const { username,email,phoneNumber,placeOfLiving,EmergencyContact } = req.body
+    try{
+        user = await UserModel.findByIdAndUpdate(id,req.body, { new:true }).then(user =>{
+            if(!user){
+                res.json({ mssge: "Not found!" })
+            }
+        })
+        res.json(user)
+    }catch(err){
+        res.json({
+            msge: err
+        })
+    }
+}
+
 exports.createUser = createUser;
 exports.createProfile = createProfile;
 exports.loggingIN = loggingIN;
@@ -255,3 +272,4 @@ exports.CreateSession = CreateSession;
 exports.updateProfile = updateProfile;
 exports.VerifyUser = VerifyUser
 exports.host = host
+exports.EditPersonalInfo = EditPersonalInfo

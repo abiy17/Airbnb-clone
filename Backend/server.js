@@ -20,6 +20,8 @@ app.post(`/verifyUser/:id`,upload.single(`GovermentIdFile`),mongo.VerifyUser)
 
 app.put(`/updateProfile/:id`,upload.single(`imageUpdate`),mongo.updateProfile)
 
+app.put(`/EditPersonalInfo/:id`,mongo.EditPersonalInfo)
+
 app.post(`/host/:id`,upload.single(`Houseimage`),mongo.host)
 
 app.post(`/signup`,mongo.createUser)

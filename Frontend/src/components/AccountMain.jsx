@@ -23,15 +23,17 @@ function AccountMain() {
                 </div>
             </div>
             <div className="w-11/12 relative left-10 h-[40em] grid grid-cols-3 gap-1 mt-5">
-                <div className="w-11/12 cursor-pointer h-[10em] shadow-xl rounded-xl flex flex-col">
-                    <div className="w-10/12 m-auto h-1/3">
-                        <GrContactInfo className="text-[2.6em]"/>
+                <NavLink to='/Account/PersonalInfo'>
+                    <div className="w-11/12 cursor-pointer h-[10em] shadow-xl rounded-xl flex flex-col">
+                        <div className="w-10/12 m-auto h-1/3">
+                            <GrContactInfo className="text-[2.6em]"/>
+                        </div>
+                        <div className="h-1/2 flex flex-col w-11/12 m-auto">
+                            <p className="font-bold">Personal Info</p>
+                            <p className="text-stone-500">Provide Personal Details and how we can reach you</p>
+                        </div>
                     </div>
-                    <div className="h-1/2 flex flex-col w-11/12 m-auto">
-                        <p className="font-bold">Personal Info</p>
-                        <p className="text-stone-500">Provide Personal Details and how we can reach you</p>
-                    </div>
-                </div>
+                </NavLink>
                 <div className="w-11/12 cursor-pointer h-[10em] shadow-xl rounded-xl">
                     <div className="w-10/12 m-auto h-1/3">
                             <MdOutlineSecurity className="text-[2.6em]"/>

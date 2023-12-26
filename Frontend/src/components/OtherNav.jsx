@@ -13,7 +13,7 @@ function OtherNav() {
     console.log(user)
     return ( 
             <div className="flex justify-between items-center w-full h-[5em] shadow-sm sticky top-0 bg-white z-10">
-                <div onClick={()=>Navigate(-1)} className="text-red-500 ml-20 flex gap-1 items-center cursor-pointer">
+                <div onClick={()=>Navigate(-1)} className="text-red-400 ml-20 flex gap-1 items-center cursor-pointer">
                     <FaAirbnb className="text-4xl"/>
                     <p className="font-bold text-2xl">airbnb</p>
                 </div>
