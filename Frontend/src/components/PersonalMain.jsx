@@ -3,10 +3,26 @@ import { IoShield } from "react-icons/io5";
 import { IoMdLock } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 import { IoEye } from "react-icons/io5";
-import { useContext } from "preact/hooks";
+import { useContext,useState } from "preact/hooks";
 import MyContext from "../context";
 function PersonalMain() {
     const { user } = useContext(MyContext)
+    const [ isEditone,setisEditone ] = useState(false)
+    const [ isEditTwo,setisEditTwo ] = useState(false)
+    const [ isEditThree,setisEditThree ] = useState(false)
+    const [ isEditFour,setisEditFour ] = useState(false)
+    const [ isEditFive,setisEditFive ] = useState(false)
+
+    const [ username,setusername ] = useState("")
+    const [ email,setemail ] = useState("")
+    const [ Address,setAddress ] = useState("")
+    const [ Contact,setContact ] = useState("")
+    const [ PhoneNumber,setphoneNumber ] = useState("")
+    const HandleSubmit =(e)=>{
+        e.preventDefault()
+        alert("iubwed")
+        console.log(username)
+    }
     return (
         <div className="min-h-[30em] gap-3 w-10/12 m-auto mt-10 flex flex-col">
             <div className="w-5/12 h-[6em] ml-10 flex flex-col relative left-5">
@@ -19,38 +35,62 @@ function PersonalMain() {
             </div>
             <div className="flex gap-24 w-11/12 m-auto">
                 <div className="w-7/12 h-[30em] flex flex-col ml-5 mt-5">
+                    <form onSubmit={HandleSubmit}>
                     <div className="w-full flex flex-col gap-4">
-                        <div className="flex justify-between w-full h-16">
+                        <div className={ isEditone ? "flex justify-between w-full h-36" : "flex justify-between w-full h-16" }>
                             <div className="flex flex-col">
                                 <p>Legal name</p>
-                                <p>{user.user.username}</p>
+                                <div className={ isEditone ? "block" : "hidden" }>
+                                    <p className="text-sm mt-4">This is the name on your travel document, which could be a license or a passport.</p>
+                                    <div className="w-11/12 rounded-xl p-4 bg-stone-50 outline-none mt-3 border-[1px] border-stone-500">
+                                        <p className="text-sm text-stone-600">Enter your name</p>
+                                        <input onChange={(e)=>{ setusername(e.target.value) }} placeholder="Legal name" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
+                                    </div>
+                                </div>
+                                <p className={ isEditone ? "hidden" : "block" }>{user.user.username}</p>
+                                
                             </div>
-                            <p className="underline cursor-pointer font-medium">Edit</p>
+                            
+                            {isEditone ? <p onClick={()=>setisEditone(false)}  className="underline cursor-pointer font-medium">Cancel</p> :  <p onClick={()=>setisEditone(true)}  className="underline cursor-pointer font-medium">Edit</p>}
                         </div>
                         <div className="w-full h-[1px] bg-stone-300 mb-4"></div>
                     </div>
                     <div className="w-full flex flex-col gap-4">
-                        <div className="flex justify-between w-full h-16">
+                        <div className={ isEditTwo ? "flex justify-between w-full h-36" : "flex justify-between w-full h-16" }>
                             <div className="flex flex-col">
                                 <p>Email address</p>
-                                <p>{user.user.email}</p>
+                                <div className={ isEditTwo ? "block" : "hidden" }>
+                                    <p className="text-sm mt-4">Use an address you’ll always have access to.</p>
+                                    <div className="w-11/12 rounded-xl p-4 bg-stone-50 outline-none mt-3 border-[1px] border-stone-500">
+                                        <p className="text-sm text-stone-600">Enter your Email</p>
+                                        <input placeholder="Email" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
+                                    </div>
+                                </div>
+                                <p className={ isEditTwo ? "hidden" : "block" }>{user.user.email}</p>
                             </div>
-                            <p className="underline cursor-pointer font-medium">Edit</p>
+                            {isEditTwo ? <p onClick={()=>setisEditTwo(false)}  className="underline cursor-pointer font-medium">Cancel</p> :  <p onClick={()=>setisEditTwo(true)}  className="underline cursor-pointer font-medium">Edit</p>}
                         </div>
                         <div className="w-full h-[1px] bg-stone-300 mb-4"></div>
                     </div>
                     <div className="w-full flex flex-col gap-4">
-                        <div className="flex justify-between w-full h-16">
+                        <div className={ isEditThree ? "flex justify-between w-full h-40" : "flex justify-between w-full h-16" }>
                             <div className="flex flex-col">
                                 <p>Phone number</p>
-                                <p>+{user.user.phoneNumber}</p>
+                                <div className={ isEditThree ? "block" : "hidden" }>
+                                    <p className="text-sm mt-4">Contact number (for confirmed guests and Airbnb to get in touch). You can add other numbers and choose how they’re used.</p>
+                                    <div className="w-11/12 rounded-xl p-4 bg-stone-50 outline-none mt-3 border-[1px] border-stone-500">
+                                        <p className="text-sm text-stone-600">Enter your Phone Number</p>
+                                        <input placeholder="Phone Number" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
+                                    </div>
+                                </div>
+                                <p className={ isEditThree ? "hidden" : "block" }>+{user.user.phoneNumber}</p>
                             </div>
-                            <p className="underline cursor-pointer font-medium">Edit</p>
+                            {isEditThree ? <p onClick={()=>setisEditThree(false)}  className="underline cursor-pointer font-medium">Cancel</p> :  <p onClick={()=>setisEditThree(true)}  className="underline cursor-pointer font-medium">Edit</p>}
                         </div>
                         <div className="w-full h-[1px] bg-stone-300 mb-4"></div>
                     </div>
                     <div className="w-full flex flex-col gap-4">
-                        <div className="flex justify-between w-full h-16">
+                        <div className="flex justify-between w-full h-16" >
                             <div className="flex flex-col">
                                 <p>Government Id</p>
                                 {user.user.isVerified ? <p>Provided</p> : <p>Not Provided</p>}
@@ -60,25 +100,41 @@ function PersonalMain() {
                         <div className="w-full h-[1px] bg-stone-300 mb-4"></div>
                     </div>
                     <div className="w-full flex flex-col gap-4">
-                        <div className="flex justify-between w-full h-16">
+                        <div className={ isEditFour ? "flex justify-between w-full h-36" : "flex justify-between w-full h-16" }>
                             <div className="flex flex-col">
+                                <p>user Address</p>
+                                <div className={ isEditFour ? "block" : "hidden" }>
+                                    <p className="text-sm mt-4">This is the name on your travel document, which could be a license or a passport.</p>
+                                    <div className="w-11/12 rounded-xl p-4 bg-stone-50 outline-none mt-3 border-[1px] border-stone-500">
+                                        <p className="text-sm text-stone-600">Enter your Address</p>
+                                        <input placeholder="Address" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
+                                    </div>
+                                </div>
                                 <p>{user.user.Profile[0].placeOfLiving}</p>
-                                <p>Not provided</p>
                             </div>
-                            <p className="underline cursor-pointer font-medium">Edit</p>
+                            {isEditFour ? <p onClick={()=>setisEditFour(false)}  className="underline cursor-pointer font-medium">Cancel</p> :  <p onClick={()=>setisEditFour(true)}  className="underline cursor-pointer font-medium">Edit</p>}
                         </div>
                         <div className="w-full h-[1px] bg-stone-300 mb-4"></div>
                     </div>
                     <div className="w-full flex flex-col gap-4">
-                        <div className="flex justify-between w-full h-16">
+                        <div className={ isEditFive ? "flex justify-between w-full h-36" : "flex justify-between w-full h-16" }>
                             <div className="flex flex-col">
                                 <p>Emergency contact</p>
-                                <p>Not Provided</p>
+                                <div className={ isEditFive ? "block" : "hidden" }>
+                                    <p className="text-sm mt-4">A trusted contact we can alert in an urgent situation.</p>
+                                    <div className="w-11/12 rounded-xl p-4 bg-stone-50 outline-none mt-3 border-[1px] border-stone-500">
+                                        <p className="text-sm text-stone-600">Enter Emergency Contact</p>
+                                        <input placeholder="Emergency Contact" type="number" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
+                                    </div>
+                                </div>
+                                <p className={ isEditFive ? "hidden" : "block" }>Not Provided</p>
                             </div>
-                            <p className="underline cursor-pointer font-medium">Edit</p>
+                            {isEditFive ? <p onClick={()=>setisEditFive(false)}  className="underline cursor-pointer font-medium">Cancel</p> :  <p onClick={()=>setisEditFive(true)}  className="underline cursor-pointer font-medium">Edit</p>}
                         </div>
                         <div className="w-full h-[1px] bg-stone-300 mb-4"></div>
                     </div>
+                    <button className="bg-black p-2 w-3/12 text-white font-semibold rounded-xl hover:scale-105 duration-300 active:scale-100">Save</button>
+                    </form>
                 </div>
                 <div className="w-4/12 h-[55em] flex flex-col gap-3 rounded-2xl border-[1px] border-stone-300">
                     <div className="w-11/12 h-[15em]">

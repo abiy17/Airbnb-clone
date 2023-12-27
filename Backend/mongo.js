@@ -244,6 +244,7 @@ const host = async (req,res)=>{
     }
 }
 
+let userInfo
 const EditPersonalInfo = async (req,res)=>{
     const { id } = req.params
     const { username,email,phoneNumber,placeOfLiving,EmergencyContact } = req.body
@@ -253,7 +254,7 @@ const EditPersonalInfo = async (req,res)=>{
                 res.json({ mssge: "Not found!" })
             }
         })
-        res.json(user)
+        userInfo = await UserModel.findById(id)
     }catch(err){
         res.json({
             msge: err

@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
     password: { type:String,required:true },
     phoneNumber: { type:Number,require:true },
     isVerified: { type:Boolean,require:true },
+    EmergencyContact: { type:String,require:true },
     IdFile: [],
     Wishlists: [],
     Profile: [],
