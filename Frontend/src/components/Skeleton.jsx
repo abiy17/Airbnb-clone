@@ -6,8 +6,8 @@ function Skeleton() {
             <div className="w-[99%] h-[18.4em] bg-white">
                 <Skeletonn className='w-[17em] sm:w-[99%] h-full'/>
             </div>
-            <div className="">
-                <Skeletonn className='w-[20%] sm:w-[90%] mt-5'/>
+            <div className="w-2/3">
+                <Skeletonn className='w-[20%] mt-5'/>
                 <Skeletonn className='w-[10%] sm:w-[70%] mt-2'/>
                 <Skeletonn className='w-[10%] sm:w-[70%] mt-2'/>
             </div>

@@ -254,9 +254,10 @@ const EditPersonalInfo = async (req,res)=>{
                 res.json({ mssge: "Not found!" })
             }
         })
-        userInfo = await UserModel.findById(id)
+        let newUserInfo = await UserModel.findById(id)
+        res.status(200).json({ msge: "updated Successfully!",newUserInfo })
     }catch(err){
-        res.json({
+        res.status(400).json({
             msge: err
         })
     }

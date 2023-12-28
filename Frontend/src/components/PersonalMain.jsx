@@ -1,12 +1,15 @@
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { IoShield } from "react-icons/io5";
 import { IoMdLock } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { IoEye } from "react-icons/io5";
 import { useContext,useState } from "preact/hooks";
 import MyContext from "../context";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios"
 function PersonalMain() {
-    const { user } = useContext(MyContext)
+    const { user,currentUser,setuser } = useContext(MyContext)
     const [ isEditone,setisEditone ] = useState(false)
     const [ isEditTwo,setisEditTwo ] = useState(false)
     const [ isEditThree,setisEditThree ] = useState(false)
@@ -18,13 +21,57 @@ function PersonalMain() {
     const [ Address,setAddress ] = useState("")
     const [ Contact,setContact ] = useState("")
     const [ PhoneNumber,setphoneNumber ] = useState("")
+    const Navigate = useNavigate()
     const HandleSubmit =(e)=>{
         e.preventDefault()
-        alert("iubwed")
-        console.log(username)
+        axios.put(`http://localhost:5000/EditPersonalInfo/${currentUser._id}`,{ username,email,PhoneNumber,placeOfLiving: Address,EmergencyContact: Contact }).then(res =>{
+            if(res.status === 200){
+                localStorage.setItem(`user`,JSON.stringify(res.data.newUserInfo))
+                setuser({
+                    user: res.data.newUserInfo
+                })
+                toast.success('personal info Edited sucessfully', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                setTimeout(() => {
+                    Navigate(-1)
+                }, 3000);
+            }
+            else{
+                toast.error('SomeThing Went Wrong', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+            }
+        })
     }
     return (
-        <div className="min-h-[30em] gap-3 w-10/12 m-auto mt-10 flex flex-col">
+        <div className="min-h-[44em] gap-3 w-10/12 m-auto mt-10 flex flex-col">
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
             <div className="w-5/12 h-[6em] ml-10 flex flex-col relative left-5">
                 <div className="flex gap-3 items-center text-[13px] font-medium">
                     <NavLink to="/Account"><p className="hover:underline cursor-pointer">Account</p></NavLink>
@@ -63,7 +110,7 @@ function PersonalMain() {
                                     <p className="text-sm mt-4">Use an address you’ll always have access to.</p>
                                     <div className="w-11/12 rounded-xl p-4 bg-stone-50 outline-none mt-3 border-[1px] border-stone-500">
                                         <p className="text-sm text-stone-600">Enter your Email</p>
-                                        <input placeholder="Email" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
+                                        <input onChange={(e)=>setemail(e.target.value)} placeholder="Email" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
                                     </div>
                                 </div>
                                 <p className={ isEditTwo ? "hidden" : "block" }>{user.user.email}</p>
@@ -80,7 +127,7 @@ function PersonalMain() {
                                     <p className="text-sm mt-4">Contact number (for confirmed guests and Airbnb to get in touch). You can add other numbers and choose how they’re used.</p>
                                     <div className="w-11/12 rounded-xl p-4 bg-stone-50 outline-none mt-3 border-[1px] border-stone-500">
                                         <p className="text-sm text-stone-600">Enter your Phone Number</p>
-                                        <input placeholder="Phone Number" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
+                                        <input onChange={(e)=>setphoneNumber(e.target.value)} placeholder="Phone Number" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
                                     </div>
                                 </div>
                                 <p className={ isEditThree ? "hidden" : "block" }>+{user.user.phoneNumber}</p>
@@ -107,10 +154,10 @@ function PersonalMain() {
                                     <p className="text-sm mt-4">This is the name on your travel document, which could be a license or a passport.</p>
                                     <div className="w-11/12 rounded-xl p-4 bg-stone-50 outline-none mt-3 border-[1px] border-stone-500">
                                         <p className="text-sm text-stone-600">Enter your Address</p>
-                                        <input placeholder="Address" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
+                                        <input onChange={(e)=>setAddress(e.target.value)} placeholder="Address" type="text" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
                                     </div>
                                 </div>
-                                <p>{user.user.Profile[0].placeOfLiving}</p>
+                                { isEditFour ? "" : <p>{user.user.Profile[0].placeOfLiving}</p> }
                             </div>
                             {isEditFour ? <p onClick={()=>setisEditFour(false)}  className="underline cursor-pointer font-medium">Cancel</p> :  <p onClick={()=>setisEditFour(true)}  className="underline cursor-pointer font-medium">Edit</p>}
                         </div>
@@ -124,7 +171,7 @@ function PersonalMain() {
                                     <p className="text-sm mt-4">A trusted contact we can alert in an urgent situation.</p>
                                     <div className="w-11/12 rounded-xl p-4 bg-stone-50 outline-none mt-3 border-[1px] border-stone-500">
                                         <p className="text-sm text-stone-600">Enter Emergency Contact</p>
-                                        <input placeholder="Emergency Contact" type="number" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
+                                        <input onChange={(e)=>setContact(e.target.value)} placeholder="Emergency Contact" type="number" className="w-11/12 rounded-xl bg-stone-50 outline-none"/>
                                     </div>
                                 </div>
                                 <p className={ isEditFive ? "hidden" : "block" }>Not Provided</p>
@@ -133,7 +180,7 @@ function PersonalMain() {
                         </div>
                         <div className="w-full h-[1px] bg-stone-300 mb-4"></div>
                     </div>
-                    <button className="bg-black p-2 w-3/12 text-white font-semibold rounded-xl hover:scale-105 duration-300 active:scale-100">Save</button>
+                    <button type="submit" className="bg-black p-2 w-3/12 text-white font-semibold rounded-xl hover:scale-105 duration-300 active:scale-100">Save</button>
                     </form>
                 </div>
                 <div className="w-4/12 h-[55em] flex flex-col gap-3 rounded-2xl border-[1px] border-stone-300">
